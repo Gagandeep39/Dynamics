@@ -34,11 +34,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_AREA;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_DEPARTMENT;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_DISTRICT;
 import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION;
-import static com.example.test.nuvoco3.signup.LoginActivity.DATABASE_URL;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "SignUp Activity";
@@ -220,7 +220,7 @@ public class RegisterActivity extends AppCompatActivity {
         postParam.put("7", mCity);
         postParam.put("6", mArea);
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, DATABASE_URL + "/insert", new JSONObject(postParam),
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, BASE_URL + "/insert", new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override

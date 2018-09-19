@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.test.nuvoco3.signup.LoginActivity.DATABASE_URL;
+import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
 
 public class ComplaintStatusActivity extends AppCompatActivity {
     SearchableSpinner mSearchCustomer;
@@ -132,7 +132,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(runnable, 20000);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                DATABASE_URL + "/dispCust", null, new Response.Listener<JSONObject>() {
+                BASE_URL + "/dispCust", null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -169,7 +169,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
     private void readData() {
         startProgressDialog();
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                DATABASE_URL + "/dispComplaint", null, new Response.Listener<JSONObject>() {
+                BASE_URL + "/dispComplaint", null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
