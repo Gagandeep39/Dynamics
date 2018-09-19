@@ -33,7 +33,6 @@ import com.example.test.nuvoco3.helpers.UserInfoHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -177,13 +176,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 SharedPreferences sharedPreferences = getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-                                try {
-                                    sharedPreferences.edit().putString(CUSTOMER_DATA, ObjectSerializer.serialize(set)).apply();
-                                    new UserInfoHelper(LoginActivity.this).getUserEmail();
-                                    sharedPreferences.edit().apply();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                sharedPreferences.edit().putString(CUSTOMER_DATA, ObjectSerializer.serialize(set)).apply();
+                                new UserInfoHelper(LoginActivity.this).getUserEmail();
+                                sharedPreferences.edit().apply();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {
@@ -264,11 +259,7 @@ public class LoginActivity extends AppCompatActivity {
         ArrayList<String> newArralist = new ArrayList<>();
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         if (newArralist.size() != 0)
             return Integer.parseInt(newArralist.get(13));
         return 0;

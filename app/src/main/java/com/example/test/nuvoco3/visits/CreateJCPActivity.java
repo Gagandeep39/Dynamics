@@ -42,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -98,7 +99,9 @@ public class CreateJCPActivity extends AppCompatActivity {
         mCreatedOn = getDateTime();
         mUpdatedBy = new UserInfoHelper(this).getUserId();
         mUpdatedOn = getDateTime();
-        mDate = getDateTime();
+        Log.e(TAG, "validateData1: " + getDateTime());
+        Log.e(TAG, "validateData2: " + mTextViewDate.getText().toString());
+        mDate = convertDate(mTextViewDate.getText().toString());
 
         if (TextUtils.isEmpty(mDate))
             Toast.makeText(this, "Select Date", Toast.LENGTH_SHORT).show();
@@ -294,7 +297,13 @@ public class CreateJCPActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())||compareSmallDateEquality(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())){
-                            mTextViewDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            String dateText = "";
+                            if (monthOfYear + 1 >= 10)
+                                dateText = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            else
+                                dateText = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
+
+                            mTextViewDate.setText(dateText);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                             Date date = new Date();
 
@@ -513,6 +522,25 @@ public class CreateJCPActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         }
+    }
+
+    public String convertDate(String start_dt) {
+        Log.e(TAG, "convertJsonDateToSmall: " + start_dt);
+        String pattern = "yyyy-MM-dd";
+        DateFormat formatter = new SimpleDateFormat(pattern);
+        Date date = null;
+        //Wed, 19 Sep 2018 23:11:42 GMT
+        try {
+            date = formatter.parse(start_dt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String finalString = newFormat.format(date);
+        return finalString;
+
+
     }
 
 

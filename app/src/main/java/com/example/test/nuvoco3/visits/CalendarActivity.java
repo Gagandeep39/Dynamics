@@ -77,6 +77,7 @@ public class CalendarActivity extends AppCompatActivity {
         readData();
         calendarOperations();
 
+
     }
 
 
@@ -101,6 +102,7 @@ public class CalendarActivity extends AppCompatActivity {
         mCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
+                Toast.makeText(CalendarActivity.this, "" + dateClicked, Toast.LENGTH_SHORT).show();
                 mDayArrayList.clear();
                 String clickedDate = convertClickedDate(dateClicked);
                 for (int i = 0; i < mJcpArrayList.size(); i++) {

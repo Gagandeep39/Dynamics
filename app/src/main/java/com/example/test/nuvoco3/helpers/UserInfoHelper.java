@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.example.test.nuvoco3.signup.ObjectSerializer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.example.test.nuvoco3.helpers.Contract.USER_ADDRESS;
@@ -37,11 +36,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(mInfoType) + "";
         return mUserInfo;
@@ -51,11 +46,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_ADDRESS) + "";
         return mUserInfo;
@@ -65,11 +56,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_AREA) + "";
         return mUserInfo;
@@ -79,11 +66,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_CITY) + "";
         return mUserInfo;
@@ -93,11 +76,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_AGE) + "";
         return mUserInfo;
@@ -107,11 +86,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_DEPARTMENT) + "";
         return mUserInfo;
@@ -121,11 +96,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_EMAIL) + "";
         for (int i = 0; i < 13; i++) {
@@ -139,11 +110,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_ID) + "";
         return mUserInfo;
@@ -153,11 +120,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_NAME) + "";
         return mUserInfo;
@@ -167,11 +130,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_PHONE_NO) + "";
         return mUserInfo;
@@ -181,11 +140,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_STATUS) + "";
         return mUserInfo;
@@ -195,11 +150,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_PIN) + "";
         return mUserInfo;
@@ -209,11 +160,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_PASSWORD) + "";
         return mUserInfo;
@@ -223,11 +170,7 @@ public class UserInfoHelper {
         userArrayList = new ArrayList<>();
         sharedPreferences = mContext.getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        userArrayList = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         String mUserInfo;
         mUserInfo = userArrayList.get(USER_TOKEN) + "";
         return mUserInfo;

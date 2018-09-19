@@ -26,6 +26,7 @@ public class ChangelogActivity extends AppCompatActivity {
         mChangelogString += "Version 0.85\nFixed IP Address\nRenamed JCP calender to 'Visit Overview\nRenamed JCP Viit to'Visit Overview'\nCalender View now Shows data for current data on opening activity\nVisit Overview now shows toda's visit on opening activity";
         mChangelogString += "Version 0.86\nRemoved specific domain requirement";
         mChangelogString += "Version 0.87\nFixed the 'co.in' requiremnet";
+        mChangelogString += "Version 0.88\nFixed Create JCP for future dates\nFixed JCP Visit list not visible, but still hides on changing date\nFixed Data insertion in create JCP(Server side)";
         mChangeLog.setText(mChangelogString);
     }
 

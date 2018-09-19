@@ -31,7 +31,6 @@ import com.example.test.nuvoco3.signup.LoginActivity;
 import com.example.test.nuvoco3.signup.ObjectSerializer;
 import com.example.test.nuvoco3.signup.UserAccountActivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -173,11 +172,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Creates a shared preferences variable to retrieve the logeed in users IDs and store it in Updated By Section
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
 
         mTextViewName = header.findViewById(R.id.textViewName);
         mTextViewEmail = header.findViewById(R.id.textViewEmail);

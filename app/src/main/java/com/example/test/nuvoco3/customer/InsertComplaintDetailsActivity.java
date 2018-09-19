@@ -39,7 +39,6 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -297,11 +296,7 @@ public class InsertComplaintDetailsActivity extends AppCompatActivity {
         // Creates a shared preferences variable to retrieve the logeed in users IDs and store it in Updated By Section
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.test.nuvoco3", Context.MODE_PRIVATE);
 
-        try {
-            newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        newArralist = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("CustomerData", ObjectSerializer.serialize(new ArrayList<String>())));
         if (newArralist.size() > 0)
             return newArralist.get(6);
 

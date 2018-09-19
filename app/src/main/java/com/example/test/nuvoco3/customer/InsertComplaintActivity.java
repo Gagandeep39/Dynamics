@@ -127,7 +127,7 @@ public class InsertComplaintActivity extends AppCompatActivity {
             Toast.makeText(this, "Select Complaint Type", Toast.LENGTH_SHORT).show();
 
         if (!TextUtils.isEmpty(mDate) && !TextUtils.isEmpty(mComplaintDetails) && !TextUtils.isEmpty(mCustomerId) && !TextUtils.equals(mCustomerName, getString(R.string.default_name)) && !TextUtils.equals(mComplaintType, getString(R.string.default_name)) && !TextUtils.equals(mStatus, getString(R.string.default_name))) {
-            Log.i("lol", "validateData: " + "test OnClicks");
+            Toast.makeText(this, "Data sent", Toast.LENGTH_SHORT).show();
             storeDataToServer();
         }
     }

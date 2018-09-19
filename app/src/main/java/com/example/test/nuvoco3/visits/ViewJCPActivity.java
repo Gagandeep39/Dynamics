@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,7 +43,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.test.nuvoco3.helpers.CalendarHelper.convertSmallDateToJson;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDate;
 import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
 import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_JCP_VISIT;
@@ -78,23 +78,30 @@ public class ViewJCPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_jcp);
         initializeViews();
-//        Log.i(TAG, "onClick: " + convertSmallDateToJson(mSearchDate));
 
         initializeVariables();
         mSearchDate = mEditTextDate.getText().toString();
         mJCPArrayList.clear();
         mJCPArrayList = new ArrayList<>();
+
         readData();
+        mJcpAdapter = new JCPAdapter(this, mJCPArrayList);
+        mRecyclerView.setAdapter(mJcpAdapter);
+
 
         mImageSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mSearchDate = mEditTextDate.getText().toString();
+//                mJCPArrayList.clear();
+//                mJcpAdapter.notifyDataSetChanged();
+
                 mJCPArrayList.clear();
-                mJCPArrayList = new ArrayList<>();
                 readData();
+                mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
                 mJcpAdapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(mJcpAdapter);
+
             }
         });
 
@@ -107,7 +114,6 @@ public class ViewJCPActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         mJCPArrayList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.getItemAnimator();
         mJcpAdapter = new JCPAdapter(this, mJCPArrayList);
         mRecyclerView.setAdapter(mJcpAdapter);
@@ -146,17 +152,11 @@ public class ViewJCPActivity extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("message");
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        Log.i(TAG, "onResponse: " + "From the inner loop");
+                        Log.i(TAG, "onResponse: " + "From the inner loop" + jsonArray.length());
                         JSONObject object = jsonArray.getJSONObject(i);
-//                            for(int j=0; j<mDetailsArray.size(); j++){
-////                                if (mDetailsArray.get(j)==object.getString("record_id")){
-////                                    count
-////                                }
-//
-//                            }
-                        if (object.getString("createdBy").equals(new UserInfoHelper(ViewJCPActivity.this).getUserId())) {
                             fetchData(object);
-                        }
+//                        }
+
                     }
 
                 } catch (JSONException e1) {
@@ -192,7 +192,11 @@ public class ViewJCPActivity extends AppCompatActivity {
 
     private void fetchData(JSONObject object) {
         try {
-            if (object.getString("Date").toLowerCase().contains(convertSmallDateToJson(mSearchDate).toLowerCase())) {
+
+            Log.e(TAG, "fetchData: " + convertJsonDateToSmall(object.getString("Date")));
+            Log.e(TAG, "fetchData: " + mSearchDate);
+            if (convertJsonDateToSmall(object.getString("Date")).equals(mSearchDate)) {
+                Log.e(TAG, "fetchData: HERE");
                 mCustomerId = object.getString("Customer_id") + "";
 
                 mDate = object.getString("Date") + "";
@@ -207,6 +211,7 @@ public class ViewJCPActivity extends AppCompatActivity {
                 mUpdatedOn = object.getString("updatedOn") + "";
                 mJCPArrayList.add(new JCP(mRecordId, mCustomerId, mCustomerName, mDate, mStartTime, mEndTime, mObjective, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
                 mJcpAdapter.notifyDataSetChanged();
+                Toast.makeText(ViewJCPActivity.this, "Value " + mJCPArrayList.get(0).getCreatedOn(), Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -232,11 +237,6 @@ public class ViewJCPActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-//                        if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())) {
-//
-//                            Toast.makeText(ViewJCPActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
-//                        } else {
-
 
                             mEditTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -244,8 +244,11 @@ public class ViewJCPActivity extends AppCompatActivity {
                             Date date = new Date();
 
                             mSearchDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
+
+                        mJCPArrayList.clear();
                             readData();
-                            Log.i(TAG, "onDateSet: " + mSearchDate);
+                        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
+                        mRecyclerView.setAdapter(mJcpAdapter);
 //                        }
                     }
                 }, mYear, mMonth, mDay);
@@ -290,11 +293,28 @@ public class ViewJCPActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public String convertJsonDateToSmall(String start_dt) {
+//        Log.i(TAG, "convertJsonDateToSmall: " + start_dt);
+        String pattern = "EEE, ddd MMM yyyy HH:mm:ss 'GMT'";
+        DateFormat formatter = new SimpleDateFormat(pattern);
+        Date date = null;
+        //Wed, 19 Sep 2018 23:11:42 GMT
+        try {
+            date = formatter.parse(start_dt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String finalString = newFormat.format(date);
+        return finalString;
+
+
+    }
 
 
     void readDataFromDetailsServer(){
-       startProgressDialog();
+        startProgressDialog();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 BASE_URL + DISPLAY_JCP_VISIT_DETAILS, null, new Response.Listener<JSONObject>() {
