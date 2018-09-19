@@ -1,12 +1,7 @@
 package com.example.test.nuvoco3.helpers;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Handler;
-import android.support.design.widget.Snackbar;
-import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

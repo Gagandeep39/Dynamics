@@ -3,7 +3,6 @@ package com.example.test.nuvoco3.market;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
@@ -31,7 +30,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,9 +42,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.test.nuvoco3.R;
 import com.example.test.nuvoco3.helpers.MasterHelper;
-import com.example.test.nuvoco3.helpers.ProductHelper;
 import com.example.test.nuvoco3.helpers.UserInfoHelper;
-import com.example.test.nuvoco3.lead.InsertCustomerContactActivity;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
@@ -62,7 +58,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.test.nuvoco3.helpers.CalendarHelper.compareSmallDate;
-import static com.example.test.nuvoco3.helpers.CalendarHelper.convertClickedDate;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDate;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDateTime;
 import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
@@ -70,7 +65,6 @@ import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_BRANDS;
 import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_CUSTOMER;
 import static com.example.test.nuvoco3.helpers.Contract.INSERT_PRICES;
 import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION;
-import static com.example.test.nuvoco3.lead.InsertCustomerActivity.TAG;
 
 public class InsertBrandPriceActivity extends AppCompatActivity {
     private static final String TAG = "BrandPrice Activity";
@@ -108,6 +102,7 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_brand_price);
         initializeViews();
         initializeVariables();
+        populateCustomers();
         initializeBottomViews();
         populateSpinners();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -144,7 +139,6 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         mTextViewDate.setText(getDate());
         mDate = getDate();
 
-        populateCustomers();
 
 
     }
@@ -335,10 +329,6 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
 
     }
 
-    private void initializeProducts(String mBrand) {
-
-    }
-
     //Initialize Widgets on the Screen
     private void initializeViews() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -406,22 +396,7 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
 
 
     public void populateCustomers() {
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (progressDialog.isShowing()) {
-
-                    progressDialog.dismiss();
-                    Toast.makeText(InsertBrandPriceActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+        showProgressDialog();
 
 
         Map<String, String> postParam = new HashMap<>();

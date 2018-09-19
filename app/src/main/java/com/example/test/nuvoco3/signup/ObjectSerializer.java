@@ -6,7 +6,6 @@ package com.example.test.nuvoco3.signup;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 public class ObjectSerializer {
 
 
-    public static String serialize(Serializable obj) throws IOException {
+    public static String serialize(Serializable obj) {
         if (obj == null) return "";
         try {
             ByteArrayOutputStream serialObj = new ByteArrayOutputStream();
@@ -28,7 +27,7 @@ public class ObjectSerializer {
         }
     }
 
-    public static Object deserialize(String str) throws IOException {
+    public static Object deserialize(String str) {
         if (str == null || str.length() == 0) return null;
         try {
             ByteArrayInputStream serialObj = new ByteArrayInputStream(decodeBytes(str));

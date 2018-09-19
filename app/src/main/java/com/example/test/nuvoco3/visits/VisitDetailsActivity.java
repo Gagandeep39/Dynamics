@@ -44,12 +44,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.test.nuvoco3.helpers.CalendarHelper.convertJsonDateToSmall;
-import static com.example.test.nuvoco3.helpers.CalendarHelper.convertJsonTimToStandardDateTime;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDateTime;
 import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
-import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_JCP_VISIT;
 import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_JCP_VISIT_DETAILS;
-import static com.example.test.nuvoco3.helpers.Contract.INSERT_JCP_VISIT_DETAILS;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_PRODUCT;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_VISIT_STATUS;
 import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION;
@@ -108,6 +105,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
     private void initializeVariables() {
@@ -224,6 +222,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        dismissProgressDialogue();
                         Log.i(TAG, response.toString());
                         try {
                             if (response.getString("status").equals("updated")) {
@@ -266,7 +265,8 @@ public class VisitDetailsActivity extends AppCompatActivity {
 
 
     private void populateSpinner() {
-        mStatusAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mStatusArrayList);
+        String mStatusString[] = {"Planned", "Yet-to-Meet", "Completed"};
+        mStatusAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mStatusString);
         mStatusSpinner.setAdapter(mStatusAdapter);
         mProductAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mProductList);
         mProductSpinner.setAdapter(mProductAdapter);
@@ -319,37 +319,36 @@ public class VisitDetailsActivity extends AppCompatActivity {
             finish();
             return true;
         }
-//        else if (item.getItemId() == R.id.checkable_menu) {
-//            isChecked = !item.isChecked();
-//            item.setChecked(isChecked);
-//            mCustomerArrayList.clear();
-//            populateCustomers();
-//            return true;
-//        }
         return super.onOptionsItemSelected(item);
     }
 
     private void showProgressDialogue() {
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            validateData();
+        if (progressDialog != null) {
+
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (progressDialog != null) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                            Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    validateData();
+                                }
+                            });
+                            snackbar.show();
                         }
-                    });
-                    snackbar.show();
+                    }
                 }
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+            };
+            Handler handler = new Handler();
+            handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+        }
 
     }
 
@@ -361,8 +360,11 @@ public class VisitDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
+                if (progressDialog != null) {
+
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
 
                 try {
@@ -416,6 +418,15 @@ public class VisitDetailsActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void dismissProgressDialogue() {
+        if (progressDialog != null) {
+
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
         }
     }
 

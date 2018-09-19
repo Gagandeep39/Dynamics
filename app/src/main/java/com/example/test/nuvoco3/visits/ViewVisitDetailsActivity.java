@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -109,9 +108,7 @@ RequestQueue queue;
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
+                        dismissProgressDialogue();
                         Log.i(TAG, response.toString());
                         try {
                             if (response.getString("status").equals("updated")) {
@@ -234,10 +231,7 @@ RequestQueue queue;
 
             @Override
             public void onResponse(JSONObject response) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-
+                dismissProgressDialogue();
                 try {
                     Log.i(TAG, "onResponse: " + response);
 
@@ -312,16 +306,7 @@ RequestQueue queue;
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            readData();
-                        }
-                    });
-                    snackbar.show();
-                }
+                dismissProgressDialogue();
             }
         };
         Handler handler = new Handler();
@@ -337,5 +322,13 @@ RequestQueue queue;
         return super.onOptionsItemSelected(item);
     }
 
+    public void dismissProgressDialogue() {
+        if (progressDialog != null) {
+
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
+    }
 
 }

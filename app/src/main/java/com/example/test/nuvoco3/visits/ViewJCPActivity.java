@@ -42,7 +42,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.test.nuvoco3.helpers.CalendarHelper.compareSmallDate;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.convertSmallDateToJson;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDate;
 import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
@@ -82,6 +81,9 @@ public class ViewJCPActivity extends AppCompatActivity {
 //        Log.i(TAG, "onClick: " + convertSmallDateToJson(mSearchDate));
 
         initializeVariables();
+        mSearchDate = mEditTextDate.getText().toString();
+        mJCPArrayList.clear();
+        mJCPArrayList = new ArrayList<>();
         readData();
 
         mImageSearch.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +91,7 @@ public class ViewJCPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mSearchDate = mEditTextDate.getText().toString();
                 mJCPArrayList.clear();
+                mJCPArrayList = new ArrayList<>();
                 readData();
                 mJcpAdapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(mJcpAdapter);
@@ -136,17 +139,14 @@ public class ViewJCPActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-
+                dismissProgressDialogue();
                 try {
                     Log.i(TAG, "onResponse: " + response);
 
                     JSONArray jsonArray = response.getJSONArray("message");
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-
+                        Log.i(TAG, "onResponse: " + "From the inner loop");
                         JSONObject object = jsonArray.getJSONObject(i);
 //                            for(int j=0; j<mDetailsArray.size(); j++){
 ////                                if (mDetailsArray.get(j)==object.getString("record_id")){
@@ -232,10 +232,10 @@ public class ViewJCPActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())) {
-
-                            Toast.makeText(ViewJCPActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
-                        } else {
+//                        if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())) {
+//
+//                            Toast.makeText(ViewJCPActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
+//                        } else {
 
 
                             mEditTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
@@ -246,7 +246,7 @@ public class ViewJCPActivity extends AppCompatActivity {
                             mSearchDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
                             readData();
                             Log.i(TAG, "onDateSet: " + mSearchDate);
-                        }
+//                        }
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -301,9 +301,7 @@ public class ViewJCPActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
+                dismissProgressDialogue();
 
                 try {
                     Log.i(TAG, "onResponse: " + response);
@@ -316,6 +314,8 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                             mDetailsJcpId = object.getString("JCP_id");
                             mDetailsArray.add(mDetailsJcpId);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -348,6 +348,15 @@ public class ViewJCPActivity extends AppCompatActivity {
 
         // Adding request to request queue
         queue.add(jsonObjReq);
+    }
+
+    public void dismissProgressDialogue() {
+        if (progressDialog != null) {
+
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
     }
 
 }

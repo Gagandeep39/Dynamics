@@ -43,6 +43,7 @@ import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "Login Activity";
+    public static final String DATABASE_URL = "http://52.38.68.15:8000";
     public static final String LOGIN_KEY = "loggedin";    //Stores login status eg. Keep me Logged in
     public static final String CUSTOMER_DATA = "CustomerData";
     String mEmailLogin, mPasswordLogin;

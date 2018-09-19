@@ -131,7 +131,7 @@ public class ViewComplaintActivity extends AppCompatActivity {
         try {
             if (object.getString("record_id").toLowerCase().contains(mSearchText.toLowerCase())) {
                 Log.i("dfghnjm", "fetchData: " + new UserInfoHelper(this).getUserDepartment());
-                if (new UserInfoHelper(this).getUserDepartment().contains(object.getString("Type_Ofcomplaint"))) {
+//                if (new UserInfoHelper(this).getUserDepartment().contains(object.getString("Type_Ofcomplaint"))) {
 
                     mComplaintId = object.getString("record_id") + "";
                     mCustomerId = object.getString("Customer_id") + "";
@@ -146,7 +146,7 @@ public class ViewComplaintActivity extends AppCompatActivity {
                     mUpdatedOn = object.getString("upatedOn") + "";
                     mComplaintArrayList.add(new Complaints(mCustomerId, mCustomerName, mType, mDetails, mComplaintId, mDate, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
                     mComplaintAdapter.notifyDataSetChanged();
-                }
+//                }
 
             }
         } catch (JSONException e) {

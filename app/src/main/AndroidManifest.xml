@@ -188,6 +188,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".ChangelogActivity"
             android:label="@string/title_activity_changelog"
             android:theme="@style/AppTheme"></activity>

@@ -151,9 +151,7 @@ public class CalendarHelper {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-            if (date1.after(date2))
-                return true;
-        else return false;
+        return date1.after(date2);
 
 
     }
@@ -169,9 +167,7 @@ public class CalendarHelper {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (date1.equals(date2))
-            return true;
-        else return false;
+        return date1.equals(date2);
 
 
     }

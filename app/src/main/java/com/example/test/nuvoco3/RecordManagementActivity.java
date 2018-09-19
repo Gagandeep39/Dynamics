@@ -34,9 +34,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDateTime;
-import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
 import static com.example.test.nuvoco3.helpers.Contract.MASTER_VISIT_STATUS;
 import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION;
+import static com.example.test.nuvoco3.signup.LoginActivity.DATABASE_URL;
 
 public class RecordManagementActivity extends AppCompatActivity {
     public static final String URL_INSERT_PRODUCT = "/insertMaster";
@@ -124,7 +124,7 @@ public class RecordManagementActivity extends AppCompatActivity {
         postParam.put("9", mUpdatedBy);
 
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, BASE_URL + URL_INSERT_PRODUCT, new JSONObject(postParam),
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, DATABASE_URL + URL_INSERT_PRODUCT, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

@@ -35,7 +35,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.test.nuvoco3.R;
 import com.example.test.nuvoco3.helpers.MasterHelper;
 import com.example.test.nuvoco3.helpers.UserInfoHelper;
-import com.example.test.nuvoco3.lead.InsertCustomerContactActivity;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
@@ -52,7 +51,6 @@ import java.util.Map;
 
 import static com.example.test.nuvoco3.helpers.CalendarHelper.compareSmallDate;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.compareSmallDateEquality;
-import static com.example.test.nuvoco3.helpers.CalendarHelper.convertJsonTimToStandardDateTime;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDate;
 import static com.example.test.nuvoco3.helpers.CalendarHelper.getDateTime;
 import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
@@ -314,27 +312,20 @@ public class CreateJCPActivity extends AppCompatActivity {
     }
 
     public void populateCustomers() {
+        if (progressDialog != null) {
 
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(CreateJCPActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    snackbar.show();
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dismissProgressDialogue();
                 }
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+            };
+            Handler handler = new Handler();
+            handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+        }
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 BASE_URL + DISPLAY_CUSTOMER, null, new Response.Listener<JSONObject>() {
@@ -342,9 +333,7 @@ public class CreateJCPActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                    }
+                    dismissProgressDialogue();
                     JSONArray jsonArray = response.getJSONArray("message");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -374,6 +363,7 @@ public class CreateJCPActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("lol", "Error with Internet : " + error.getMessage());
+                dismissProgressDialogue();
                 // hide the progress dialog
             }
         }) {
@@ -478,7 +468,7 @@ public class CreateJCPActivity extends AppCompatActivity {
                         Log.i(TAG, response.toString());
                         try {
                             if (response.getString("status").equals("updated")) {
-
+                                dismissProgressDialogue();
                                 Toast.makeText(CreateJCPActivity.this, "Successfully Added Data", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
@@ -514,6 +504,15 @@ public class CreateJCPActivity extends AppCompatActivity {
         // Adding request to request queue
         queue.add(jsonObjReq);
 
+    }
+
+    public void dismissProgressDialogue() {
+        if (progressDialog != null) {
+
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
     }
 
 

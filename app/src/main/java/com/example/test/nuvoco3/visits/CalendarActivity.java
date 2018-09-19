@@ -75,7 +75,7 @@ public class CalendarActivity extends AppCompatActivity {
         initializeViews();
         initializeVariables();
         readData();
-
+        calendarOperations();
 
     }
 
@@ -206,8 +206,10 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
+                if (progressDialog != null) {
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
 
                 try {
@@ -287,26 +289,28 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void startProgressDialog() {
 
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(true);
-        progressDialog.show();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            readData();
-                        }
-                    });
-                    snackbar.show();
+        if (progressDialog != null) {
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setCancelable(true);
+            progressDialog.show();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                readData();
+                            }
+                        });
+                        snackbar.show();
+                    }
                 }
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+            };
+            Handler handler = new Handler();
+            handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
+        }
     }
 
 

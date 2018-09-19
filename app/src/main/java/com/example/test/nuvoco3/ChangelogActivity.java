@@ -1,12 +1,9 @@
 package com.example.test.nuvoco3;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 public class ChangelogActivity extends AppCompatActivity {
@@ -26,6 +23,9 @@ public class ChangelogActivity extends AppCompatActivity {
         mChangelogString += "Date in General Market Info is Current Date and Cannot be Changed\n";
         mChangelogString += "Complaint is now displayed Department wise\n";
         mChangelogString += "Create JCP can no longer have date before current date\n";
+        mChangelogString += "Version 0.85\nFixed IP Address\nRenamed JCP calender to 'Visit Overview\nRenamed JCP Viit to'Visit Overview'\nCalender View now Shows data for current data on opening activity\nVisit Overview now shows toda's visit on opening activity";
+        mChangelogString += "Version 0.86\nRemoved specific domain requirement";
+        mChangelogString += "Version 0.87\nFixed the 'co.in' requiremnet";
         mChangeLog.setText(mChangelogString);
     }
 
