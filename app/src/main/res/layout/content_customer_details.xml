@@ -15,70 +15,107 @@
         android:layout_height="match_parent"
         tools:context=".lead.CustomerDetailsActivity">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="120sp"
-            android:layout_height="120sp"
-            android:src="@color/colorAccent" />
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:layout_marginBottom="16sp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name  : "
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="16sp">
 
-            <TextView
-                android:id="@+id/textViewName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24sp"
+                        android:layout_height="24sp"
+                        android:src="@drawable/ic_name" />
+
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="24sp"
+                        android:layout_height="24sp"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/textViewPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24sp"
+                        android:layout_height="24sp"
+                        android:src="@drawable/ic_email" />
+
+                    <TextView
+                        android:id="@+id/textViewEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
 
+
+
         <LinearLayout
+            android:paddingTop="32sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="ID"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="Status    : "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer ID   : "
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewType"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -89,40 +126,48 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="Status"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="Category  : "
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewStatus"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="Category"
+                android:textAllCaps="true"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/textViewCategory"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone Number  : "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -133,38 +178,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="Area"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="Email : "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Area  : "
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewArea"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -176,17 +204,21 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="District"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="District  : "
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewDistrict"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -197,18 +229,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="State"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="State : "
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/textViewState"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -219,17 +255,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
+                android:fontFamily="sans-serif-medium"
+                android:text="Address"
+                android:textAllCaps="true"
                 android:layout_height="wrap_content"
-                android:text="Address   : "
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewAddress"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -240,17 +280,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
-                android:text="Created By    : ID"
+                android:text="created by"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewCreatedBy"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -260,17 +301,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
-                android:text="Created on    : "
+                android:text="created on"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewCreatedOn"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -280,17 +322,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
-                android:text="Updated By    : ID"
+                android:text="updated by"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewUpdatedBy"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -300,19 +343,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0sp"
+                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Updated On    : "
+                android:text="updated on"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/textViewUpdatedOn"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:textSize="12sp" />
         </LinearLayout>
 

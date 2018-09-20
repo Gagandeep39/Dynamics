@@ -47,17 +47,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_expand_more_black_24dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/imageViewIcon"
-            android:padding="@dimen/padding_medium"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:src="@color/colorAccent"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:padding="8sp"
+            android:paddingStart="8sp"
+            android:paddingTop="8sp"
+            android:paddingBottom="16sp"
             android:id="@+id/linearLayout"
             android:textSize="@dimen/text_medium"
             android:layout_width="0dp"

@@ -14,6 +14,7 @@
     app:cardCornerRadius="@dimen/padding_medium">
 
     <LinearLayout
+        android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:id="@+id/linearLayout"
         android:layout_height="wrap_content"

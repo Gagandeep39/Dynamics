@@ -91,7 +91,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         switch (mCategory) {
             case "Dealer":
                 return R.drawable.ic_dealer;
-            case "Subdealer":
+            case "Sub-dealer":
                 return R.drawable.ic_sub_dealer;
             case "Individual":
                 return R.drawable.ic_individual;
@@ -129,7 +129,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         CardView mCardView;
         ConstraintLayout mConstraintLayout;
         LinearLayout mLinearLayout;
-        ImageView mImageExpand, mImageExpandLess, mImageCustomer, mImageContacts;
+        ImageView mImageExpand, mImageExpandLess;
+        TextView mImageCustomer, mImageContacts;
         ImageView mImageIcon;
 
         public ViewHolder(View itemView) {

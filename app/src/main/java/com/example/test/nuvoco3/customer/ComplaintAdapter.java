@@ -39,6 +39,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
         final Complaints mCurrentComplaint = mComplaintList.get(position);
         holder.setIsRecyclable(false);
 
+        holder.mImageIcon.setBackgroundResource(chooseImage(mCurrentComplaint.getType()));
         holder.mTextViewDate.append(mCurrentComplaint.getmDate());
         holder.mTextViewType.append(mCurrentComplaint.getType());
         holder.mTextViewComplaintId.append(mCurrentComplaint.getComplaintId());
@@ -91,11 +92,26 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
         return mComplaintList.size();
     }
 
+    private int chooseImage(String mCategory) {
+        switch (mCategory) {
+            case "Logistics":
+                return R.drawable.ic_logistics;
+            case "Sales":
+                return R.drawable.ic_sales;
+            case "Collection":
+                return R.drawable.ic_collection;
+            case "Finance":
+                return R.drawable.ic_finance;
+        }
+        return R.drawable.ic_technical;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextViewType, mTextViewComplaintId, mTextViewCustomerName, mTextViewDate, mTextViewDetails;
         ConstraintLayout mConstraintLayout;
         LinearLayout mLinearLayout;
         ImageView mImageExpandLess, mImageExpandMore;
+        ImageView mImageIcon;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +124,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
             mLinearLayout = itemView.findViewById(R.id.linearLayout2);
             mImageExpandLess = itemView.findViewById(R.id.imageViewExpandLess);
             mImageExpandMore = itemView.findViewById(R.id.imageViewExpand);
+            mImageIcon = itemView.findViewById(R.id.imageViewIcon);
         }
     }
 }

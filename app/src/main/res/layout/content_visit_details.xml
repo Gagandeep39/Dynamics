@@ -185,7 +185,23 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8sp"
+            android:text="Current Visit Status " />
+
+        <TextView
+            android:id="@+id/textViewVisitStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24sp"
+            android:text="-"
+            android:textColor="#ff000000"
+            android:textSize="16sp" />
+
         <LinearLayout
+            android:id="@+id/statusLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -194,7 +210,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visit Status" />
+                android:text="Update Visit Status" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
 

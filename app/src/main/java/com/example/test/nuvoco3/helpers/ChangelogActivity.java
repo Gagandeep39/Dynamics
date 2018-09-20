@@ -26,7 +26,6 @@ public class ChangelogActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         mChangeLogTextView = findViewById(R.id.textView);
         mChangelogString = readChangelogFile();
         mChangeLogTextView.setText(mChangelogString);

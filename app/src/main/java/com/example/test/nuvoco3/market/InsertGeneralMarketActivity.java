@@ -381,12 +381,18 @@ public class InsertGeneralMarketActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
+
+                        String dateText = "";
                         if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())){
 
                             Toast.makeText(InsertGeneralMarketActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
                         }else {
+                            if (monthOfYear + 1 >= 10)
+                                dateText = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            else
+                                dateText = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
 
-                            mTextViewDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            mTextViewDate.setText(dateText);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date date = new Date();

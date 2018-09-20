@@ -183,6 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "" + response.getString("status"), Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, "onResponse: " + response.getString("status"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -193,7 +194,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(LoginActivity.this, "" + error, Toast.LENGTH_SHORT).show();
-                VolleyLog.d(TAG, "Error while making database connection : " + error.getMessage());
+                Log.e(TAG, "onResponse: " + error.getMessage());
+                VolleyLog.e(TAG, "Error while making database connection : " + error.getMessage());
             }
         }) {
 

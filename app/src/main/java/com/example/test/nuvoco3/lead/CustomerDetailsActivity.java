@@ -72,20 +72,20 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     //  Displays details of a particular adapter from the ID received from the recycler view
     private void displayData(int position) {
 
-        mName.append(mCustomerArrayList.get(position).getCustomerName());
-        mType.append(mCustomerArrayList.get(position).getCustomerId());
-        mCategory.append(mCustomerArrayList.get(position).getCustomerCategory());
-        mStatus.append(mCustomerArrayList.get(position).getCustomerStatus());
-        mPhone.append(mCustomerArrayList.get(position).getCustomerPhoneno());
-        mEmail.append(mCustomerArrayList.get(position).getCustomerEmailId());
-        mArea.append(mCustomerArrayList.get(position).getCustomerArea());
-        mDistrict.append(mCustomerArrayList.get(position).getCustomerDistrict());
-        mState.append(mCustomerArrayList.get(position).getCustomerState());
-        mAddress.append(mCustomerArrayList.get(position).getCustomerAddress());
-        mCreatedBy.append(mCustomerArrayList.get(position).getCustomerCreatedBy());
-        mCreatedOn.append(mCustomerArrayList.get(position).getCustomerCreatedOn());
-        mUpdatedBy.append(mCustomerArrayList.get(position).getCustomerUpdatedBy());
-        mUpdatedOn.append(mCustomerArrayList.get(position).getCustomerUpdatedOn());
+        mName.append(" " + mCustomerArrayList.get(position).getCustomerName());
+        mType.append(" " + mCustomerArrayList.get(position).getCustomerId());
+        mCategory.append(" " + mCustomerArrayList.get(position).getCustomerCategory());
+        mStatus.append(" " + mCustomerArrayList.get(position).getCustomerStatus());
+        mPhone.append(" " + mCustomerArrayList.get(position).getCustomerPhoneno());
+        mEmail.append(" " + mCustomerArrayList.get(position).getCustomerEmailId());
+        mArea.append(" " + mCustomerArrayList.get(position).getCustomerArea());
+        mDistrict.append(" " + mCustomerArrayList.get(position).getCustomerDistrict());
+        mState.append(" " + mCustomerArrayList.get(position).getCustomerState());
+        mAddress.append(" " + mCustomerArrayList.get(position).getCustomerAddress());
+        mCreatedBy.append(" " + mCustomerArrayList.get(position).getCustomerCreatedBy());
+        mCreatedOn.append(" " + mCustomerArrayList.get(position).getCustomerCreatedOn());
+        mUpdatedBy.append(" " + mCustomerArrayList.get(position).getCustomerUpdatedBy());
+        mUpdatedOn.append(" " + mCustomerArrayList.get(position).getCustomerUpdatedOn());
         mImageIcon.setBackgroundResource(chooseImage(mCustomerArrayList.get(position).getCustomerCategory()));
 
 

@@ -59,6 +59,7 @@ public class UpdateStatusActivity extends AppCompatActivity {
     String mComplaintId;
     ProgressDialog progressDialog;
     RequestQueue queue;
+
     int size = 50;
     String mRecordId, mType, mDate, mRepresentative, mCustomerId, mCustomerName, mStatus, mDetails, mRemark, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy, mClosedOn;
     CoordinatorLayout mCoordinatorLayout;
@@ -172,6 +173,7 @@ boolean complaintFound = false;
         if (TextUtils.equals(mStatus, "Closed")) {
             mStatusLayout.setVisibility(View.GONE);
             count = 1;
+            fab.hide();
         } else {
             mStatus = getString(R.string.default_name);
             mStatusLayout.setVisibility(View.VISIBLE);
@@ -226,6 +228,7 @@ boolean complaintFound = false;
         mTextView = findViewById(R.id.textView);
         mEditTextStatus = findViewById(R.id.editTextStatus);
         mStatusLayout = findViewById(R.id.statusLayout);
+
 
     }
 

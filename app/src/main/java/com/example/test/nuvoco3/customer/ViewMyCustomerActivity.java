@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -42,7 +43,7 @@ import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION
 
 public class ViewMyCustomerActivity extends AppCompatActivity {
     private static final String TAG = "NUVOCO";
-    public static ArrayList<Customer> mCustomerArrayList;
+    public static ArrayList<Customer> mCustomerArrayList, mSearchList;
     RecyclerView mRecyclerView;
     String mAddress, mArea, mDistrict, mCategory, mEmail, mPhone, mState, mCreatedBy, mCreatedOn, mUpdatedBy, mUpdatedOn, mId, mName, mStatus;
     CustomerAdapter mAdapter;
@@ -67,20 +68,47 @@ public class ViewMyCustomerActivity extends AppCompatActivity {
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mCustomerArrayList.clear();
+                mSearchList.clear();
+                Log.e(TAG, "onQueryTextSubmit: BUTTON PRESSED" + query);
                 mSearchText = query;
-                readData();
+                for (int i = 0; i < mCustomerArrayList.size(); i++) {
+                    if (mCustomerArrayList.get(i).getCustomerName().toLowerCase().contains(mSearchText.toLowerCase()) || mCustomerArrayList.get(i).getCustomerId().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerPhoneno().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerState().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerEmailId().contains(mSearchText)) {
+                        mSearchList.add(mCustomerArrayList.get(i));
+
+
+                    }
+                }
+//                readData();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+
+                if (query.equals("")) {
+                    mAdapter = new CustomerAdapter(ViewMyCustomerActivity.this, mCustomerArrayList);
+                } else {
+                    mAdapter = new CustomerAdapter(ViewMyCustomerActivity.this, mSearchList);
+                }
+
                 mAdapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(mAdapter);
                 return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String query) {
 
-                return false;
+                mSearchList.clear();
+                mSearchText = query;
+                for (int i = 0; i < mCustomerArrayList.size(); i++) {
+                    if (mCustomerArrayList.get(i).getCustomerName().toLowerCase().contains(mSearchText.toLowerCase()) || mCustomerArrayList.get(i).getCustomerId().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerPhoneno().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerState().contains(mSearchText) || mCustomerArrayList.get(i).getCustomerEmailId().contains(mSearchText)) {
+                        mSearchList.add(mCustomerArrayList.get(i));
+
+
+                    }
+                }
+                mAdapter = new CustomerAdapter(ViewMyCustomerActivity.this, mSearchList);
+                mAdapter.notifyDataSetChanged();
+                mRecyclerView.setAdapter(mAdapter);
+                return true;
             }
         });
 
@@ -90,6 +118,7 @@ public class ViewMyCustomerActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         queue = Volley.newRequestQueue(this);
         mCustomerArrayList = new ArrayList<>();
+        mSearchList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.getItemAnimator();

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuvoco Sales Point</string>
+    <string name="app_name">Sales Dynamics</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_view_customer">ViewCustomerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -53,19 +53,19 @@
     <string name="title_activity_insert">InsertActivity</string>
     <string name="title_activity_update_status">UpdateStatusActivity</string>
     <string name="email_id">Email ID </string>
-    <string name="name">Name : </string>
-    <string name="id">ID : </string>
-    <string name="category">Category : </string>
-    <string name="area">Area : </string>
+    <string name="name">Name: </string>
+    <string name="id">ID: </string>
+    <string name="category">Category </string>
+    <string name="area">Area</string>
     <string name="view_customer">View Customer</string>
     <string name="view_contacts">View Contacts</string>
     <string name="update_status">Update Status</string>
-    <string name="title_activity_brand_price_details">BrandPriceDetailsActivity</string>
+    <string name="title_activity_brand_price_details">Product List</string>
     <string name="details">Details</string>
-    <string name="counter">Counter : </string>
-    <string name="brand">Brand : </string>
-    <string name="product">Product : </string>
-    <string name="stock">Stock : </string>
+    <string name="counter">Counter: </string>
+    <string name="brand">Brand: </string>
+    <string name="product">Product: </string>
+    <string name="stock">Stock: </string>
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="company_info">© 2017-18, Nuvoco Vistas Corp Ltd. All Rights reserved.</string>
@@ -81,8 +81,8 @@
     <string name="title_activity_calendar">CalendarActivity</string>
     <string name="connection_error">Error Connecting to Server</string>
     <string name="something_went_wrong">Something went wrong!!</string>
-    <string name="created_by_nuvoco">Created By -</string>
+    <string name="created_by_nuvoco">Created By - Gagandeep Singh</string>
     <string name="empty">Empty</string>
     <string name="title_activity_view_visit_details">ViewVisitDetailsActivity</string>
-    <string name="title_activity_changelog">ChangelogActivity</string>
+    <string name="title_activity_changelog">Changelogs</string>
 </resources>

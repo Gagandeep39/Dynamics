@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
+    android:background="@color/pure_white"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
@@ -15,8 +16,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/appbar"
         android:layout_width="match_parent"
+        android:background="@color/pure_white"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -24,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
-            android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name">
@@ -33,9 +33,12 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
+            app:tabBackground="@xml/tab_selector_color"
+            app:tabIndicatorColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="#ffffff"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@color/colorAccent"
             app:tabMode="fixed">
             <!--tabMode scrollable-->
             <!--lead-->

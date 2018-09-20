@@ -124,10 +124,8 @@ public class InsertCampaignActivity extends AppCompatActivity {
     private void populateSpinners() {
         mBrandAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mBrandList);
         mCustomerAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mCustomerList);
-//        mContactAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mContactList);
 
         mSearchCustomer.setAdapter(mCustomerAdapter);
-//        mSearchContact.setAdapter(mContactAdapter);
         mSearchBrand.setAdapter(mBrandAdapter);
 
         mSearchCustomer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -135,10 +133,6 @@ public class InsertCampaignActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mCounter = mCustomerList.get(position);
-                Log.i(TAG, "onItemSelected: " + mCompany);
-//                populateContacts();
-//                mContactList.clear();
-//                mContactAdapter.notifyDataSetChanged();
                 mSearchContact.setAdapter(mContactAdapter);
             }
 
@@ -156,7 +150,6 @@ public class InsertCampaignActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                mCounter = getString(R.string.default_name);
             }
         });
         mSearchBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -260,6 +253,10 @@ public class InsertCampaignActivity extends AppCompatActivity {
 
 
     private void validateData() {
+
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        mDate = mTextViewDate.getText().toString() + " " + dateFormat.format(date);
         mRepresentative = mEditTextRepresentative.getText().toString();
         mCampaignDetail = mEditTextDetails.getText().toString();
         mCreatedBy = new UserInfoHelper(this).getUserId();
@@ -428,18 +425,21 @@ public class InsertCampaignActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
+                        String dateText = "";
                         if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())){
 
                             Toast.makeText(InsertCampaignActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
                         }else {
+                            if (monthOfYear + 1 >= 10)
+                                dateText = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            else
+                                dateText = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
 
-                            mTextViewDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            mTextViewDate.setText(dateText);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date date = new Date();
 
-                            mDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
-                            Log.i(TAG, "onDateSet: " + mDate);
+                            mDate = dateText + " " + dateFormat.format(date);
                         }
                     }
                 }, mYear, mMonth, mDay);

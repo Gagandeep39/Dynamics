@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180sp"
+        android:layout_height="180sp"
         android:layout_centerInParent="true"
-        android:src="@drawable/nuvocologo"
+        app:srcCompat="@drawable/ic_dynamics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

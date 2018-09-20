@@ -51,9 +51,10 @@
 
         <ImageView
             android:id="@+id/imageViewIcon"
-            android:layout_width="80sp"
-            android:layout_height="80sp"
-            android:layout_margin="@dimen/padding_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +63,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8sp"
+            android:paddingStart="8sp"
+            android:paddingTop="8sp"
+            android:paddingEnd="8sp"
+            android:paddingBottom="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
             app:layout_constraintTop_toTopOf="parent">
@@ -115,8 +119,7 @@
                 android:layout_margin="4sp">
 
 
-                <ImageView
-                    android:src="@drawable/ic_view_contact"
+                <TextView
                     android:id="@+id/textViewCustomer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,8 +140,7 @@
                 android:layout_margin="4sp">
 
 
-                <ImageView
-                    android:src="@drawable/ic_view_customer"
+                <TextView
                     android:id="@+id/textViewContact"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -81,13 +81,8 @@ public class ViewJCPActivity extends AppCompatActivity {
 
         initializeVariables();
         mSearchDate = mEditTextDate.getText().toString();
-        mJCPArrayList.clear();
-        mJCPArrayList = new ArrayList<>();
 
         readData();
-        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
-        mJcpAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mJcpAdapter);
 
 
         mImageSearch.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +92,6 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                 mJCPArrayList.clear();
                 readData();
-                mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
-                mJcpAdapter.notifyDataSetChanged();
-                mRecyclerView.setAdapter(mJcpAdapter);
 
             }
         });
@@ -114,9 +106,6 @@ public class ViewJCPActivity extends AppCompatActivity {
         mJCPArrayList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.getItemAnimator();
-        mJcpAdapter = new JCPAdapter(this, mJCPArrayList);
-        mRecyclerView.setAdapter(mJcpAdapter);
-
 
     }
 
@@ -146,17 +135,15 @@ public class ViewJCPActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 dismissProgressDialogue();
                 try {
-                    Log.i(TAG, "onResponse: " + response);
-
                     JSONArray jsonArray = response.getJSONArray("message");
                     for (int i = 0; i < jsonArray.length(); i++) {
-
-                        Log.i(TAG, "onResponse: " + "From the inner loop" + jsonArray.length());
                         JSONObject object = jsonArray.getJSONObject(i);
                         if (object.getString("createdBy").equals(new UserInfoHelper(ViewJCPActivity.this).getUserId())) {
                             fetchData(object);
                         }
                     }
+
+                    readDataFromDetailsServer();
 
                 } catch (JSONException e1) {
                     e1.printStackTrace();
@@ -193,7 +180,6 @@ public class ViewJCPActivity extends AppCompatActivity {
             if (convertJsonDateToSmall(object.getString("Date")).equals(mSearchDate)) {
                 Log.e(TAG, "fetchData: HERE");
                 mCustomerId = object.getString("Customer_id") + "";
-
                 mDate = object.getString("Date") + "";
                 mObjective = object.getString("Objective") + "";
                 mCreatedBy = object.getString("createdBy") + "";
@@ -206,7 +192,6 @@ public class ViewJCPActivity extends AppCompatActivity {
                 mUpdatedOn = object.getString("updatedOn") + "";
                 mJCPArrayList.add(new JCP(mRecordId, mCustomerId, mCustomerName, mDate, mStartTime, mEndTime, mObjective, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
             }
-            readDataFromDetailsServer();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -231,19 +216,19 @@ public class ViewJCPActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
-                            mEditTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        String dateString = "";
+                        if ((monthOfYear + 1) > 9)
+                            dateString = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        else
+                            dateString = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        mEditTextDate.setText(dateString);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date date = new Date();
-
-                            mSearchDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
-
+                        Log.e(TAG, "onDateSet: " + mSearchDate);
+                        mSearchDate = dateString;
                         mJCPArrayList.clear();
-                            readData();
-                        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
-                        mRecyclerView.setAdapter(mJcpAdapter);
-//                        }
+                        readData();
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -326,15 +311,18 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                         try {
 
-                            if (object.getString("Visit_status").contains("Delete Visit")) {
-                                Log.e(TAG, "onResponse: I was Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + object.getString("customer_name"));
-                                for (int j = 0; j < mJCPArrayList.size(); j++) {
-                                    Log.e(TAG, "onResponse: " + mJCPArrayList.get(j).getCustomerName());
-                                    if (mJCPArrayList.get(j).getCustomerName().contains(object.getString("customer_name"))) {
-                                        mJCPArrayList.remove(j);
-                                        Log.e(TAG, "onResponse: REMOVED");
-                                    }
+                            if (object.getString("createdBy").equals(new UserInfoHelper(ViewJCPActivity.this).getUserId())) {
 
+                                if (object.getString("Visit_status").contains("Delete Visit")) {
+                                    Log.e(TAG, "onResponse: I WAS HERE");
+                                    for (int j = 0; j < mJCPArrayList.size(); j++) {
+                                        Log.e(TAG, "onResponse: " + mJCPArrayList.get(j).getCustomerName());
+                                        if (mJCPArrayList.get(j).getRecordId().contains(object.getString("JCP_id"))) {
+                                            mJCPArrayList.remove(j);
+                                            Log.e(TAG, "onResponse: REMOVED");
+                                        }
+
+                                    }
                                 }
                             }
 
@@ -344,6 +332,7 @@ public class ViewJCPActivity extends AppCompatActivity {
                         }
 
 
+                        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
                         mJcpAdapter.notifyDataSetChanged();
                         mRecyclerView.setAdapter(mJcpAdapter);
                     }

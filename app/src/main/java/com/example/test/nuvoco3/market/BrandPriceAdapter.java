@@ -38,6 +38,9 @@ public class BrandPriceAdapter extends RecyclerView.Adapter<BrandPriceAdapter.Vi
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final BrandPrice mCurrentBrandPrice = mBrandPrice.get(position);
         holder.setIsRecyclable(false);
+
+
+        holder.mImageViewIcon.setBackgroundResource(chooseImage(mCurrentBrandPrice.getProduct()));
         holder.mBrand.append(mCurrentBrandPrice.getBrand());
         holder.mCounter.append(mCurrentBrandPrice.getCounter());
         holder.mStock.append(mCurrentBrandPrice.getStock());
@@ -88,10 +91,24 @@ public class BrandPriceAdapter extends RecyclerView.Adapter<BrandPriceAdapter.Vi
         return mBrandPrice.size();
     }
 
+    private int chooseImage(String mCategory) {
+        switch (mCategory) {
+            case "PPC":
+                return R.drawable.ic_ppc;
+            case "OPC":
+                return R.drawable.ic_opc;
+            case "INFRACEM":
+                return R.drawable.ic_infracem;
+            case "PSC":
+                return R.drawable.ic_psc;
+        }
+        return R.drawable.ic_other_factory;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mCounter, mBrand, mProduct, mStock;
         LinearLayout mLinearLayout;
-        ImageView mImageExpand, mImageExpandLess;
+        ImageView mImageExpand, mImageExpandLess, mImageViewIcon;
         TextView mTextViewDetails;
         ConstraintLayout mConstraintLayout;
 
@@ -106,6 +123,7 @@ public class BrandPriceAdapter extends RecyclerView.Adapter<BrandPriceAdapter.Vi
             mTextViewDetails = itemView.findViewById(R.id.textViewDetails);
             mConstraintLayout = itemView.findViewById(R.id.constraintLayout);
             mLinearLayout = itemView.findViewById(R.id.linearLayoutExpanded);
+            mImageViewIcon = itemView.findViewById(R.id.imageViewIcon);
         }
     }
 

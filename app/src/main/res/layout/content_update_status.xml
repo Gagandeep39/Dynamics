@@ -73,6 +73,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/editTextRemark"
+                android:cursorVisible="false"
+                android:focusedByDefault="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Remark" />

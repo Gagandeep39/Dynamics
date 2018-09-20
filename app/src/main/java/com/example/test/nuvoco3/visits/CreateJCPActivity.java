@@ -67,7 +67,7 @@ public class CreateJCPActivity extends AppCompatActivity {
     TextView mTextViewStartTime, mTextViewEndTime, mTextViewDate;
     FloatingActionButton fab;
     TextInputEditText mEditTextRepresentative, mEditTextObjective;
-    String mCustomerId, mCustomerName, mDate, mStartTime, mEndTime, mObjective, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy;
+    String mCustomerId, mCustomerName, mDate, mStartTime = "", mEndTime = "", mObjective, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy;
     SearchableSpinner mCustomerSpinner, mObjectiveSpinner;
     ArrayList<String> mCustomerList, mIdList, mObjectiveList;
     ArrayAdapter mCustomerAdapter, mObjectiveAdapter;
@@ -262,20 +262,62 @@ public class CreateJCPActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                 new TimePickerDialog.OnTimeSetListener() {
 
+
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
+                        view.setIs24HourView(true);
+
                         if (v.getId() == R.id.textViewStartTime) {
-                            mStartTime = hourOfDay + ":" + minute + ":00";
-                            mTextViewStartTime.setText(hourOfDay + ":" + minute);
+                            if (hourOfDay < 10)
+                                mStartTime = "0" + hourOfDay + ":" + minute + ":00";
+                            else
+                                mStartTime = hourOfDay + ":" + minute + ":00";
+
+                            mTextViewStartTime.setText(mStartTime);
                         }
                         if (v.getId() == R.id.textViewEndTime) {
-                            mEndTime = hourOfDay + ":" + minute + ":00";
-                            mTextViewEndTime.setText(hourOfDay + ":" + minute);
+
+                            if (hourOfDay < 10)
+                                mEndTime = "0" + hourOfDay + ":" + minute + ":00";
+                            else
+                                mEndTime = hourOfDay + ":" + minute + ":00";
+                            Log.e(TAG, "onTimeSet: " + mEndTime);
+
+                            if (!mStartTime.equals("")) {
+                                if (!checkDate(mStartTime, mEndTime)) {
+                                    Toast.makeText(CreateJCPActivity.this, "End time cannot be after Starttime", Toast.LENGTH_SHORT).show();
+                                    timePickerFunction(v);
+                                } else
+
+                                    mTextViewEndTime.setText(mEndTime);
+                            } else {
+                                Toast.makeText(CreateJCPActivity.this, "Select a start time first", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
                         }
                     }
-                }, mHour, mMinute, false);
+                }, mHour, mMinute, true);
         timePickerDialog.show();
+    }
+
+
+    private boolean checkDate(String startString, String endString) {
+        String pattern = "HH:mm:ss";
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        Date startTime = null;
+        Date endTime = null;
+        try {
+            startTime = formatter.parse(startString);
+            endTime = formatter.parse(endString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return !startTime.after(endTime);
+
+
     }
 
 

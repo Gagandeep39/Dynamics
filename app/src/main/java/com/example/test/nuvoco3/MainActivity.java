@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -15,7 +16,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +43,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentCustomer.OnFragmentInteractionListener,
         FragmentVisit.OnFragmentInteractionListener,
         FragmentLead.OnFragmentInteractionListener{
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
+
+
     public static final String TAG = "MAIN ACTIVITY";
     String mName, mEmail;
     TextView mTextViewName, mTextViewEmail;
@@ -60,7 +70,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mTextViewBuildInfo.append("\nVersion " + versionName);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        String htmlString = "<p><span style=\"color: #263238;\"><Strong>Sales<Strong></span> <strong><span style=\"color: #18945A;\">DYNAMICS</span></strong></p>";
+        String htmlString2 = "<p><span style=\"color: #263238;\"><Strong>SALES<Strong></span> <strong><span style=\"color: #18945A;\">Dynamics</span></strong></p>";
         setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            getSupportActionBar().setTitle(Html.fromHtml(htmlString, Html.FROM_HTML_MODE_COMPACT));
+        else
+            getSupportActionBar().setTitle(Html.fromHtml(htmlString));
+
+//        getSupportActionBar().setTitle(Html.fromHtml("<font color='#14804d'><b>Dynamics</b></font>"));
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

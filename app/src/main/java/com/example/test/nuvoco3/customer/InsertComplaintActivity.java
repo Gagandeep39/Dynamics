@@ -257,13 +257,19 @@ public class InsertComplaintActivity extends AppCompatActivity {
                             Toast.makeText(InsertComplaintActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
                         } else {
 
-                            mTextViewDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                            Date date = new Date();
+                            String dateText;
 
-                            mDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
-                            Log.i(TAG, "onDateSet: " + mDate);
+                            if (monthOfYear + 1 >= 10)
+                                dateText = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            else
+                                dateText = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
+
+                            mTextViewDate.setText(dateText);
+                            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                            Date date = new Date();
+                            mTextViewDate.setText(dateText);
+
+                            mDate = dateText + " " + dateFormat.format(date);
 
                         }
                     }
@@ -386,6 +392,7 @@ public class InsertComplaintActivity extends AppCompatActivity {
 
         mIdList = new ArrayList<>();
         mCustomerList = new ArrayList<>();
+        mTextViewDate.setText(getDate());
 
     }
 

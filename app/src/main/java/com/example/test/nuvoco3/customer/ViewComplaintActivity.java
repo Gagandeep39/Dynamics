@@ -38,7 +38,6 @@ import static com.example.test.nuvoco3.helpers.Contract.BASE_URL;
 import static com.example.test.nuvoco3.helpers.Contract.DISPLAY_COMPLAINT;
 
 public class ViewComplaintActivity extends AppCompatActivity {
-    public static final String URL_DISPLAY_COMPLAINT_DTLS = "/dispComplaint";
     String mComplaintId, mCustomerId, mCustomerName, mCreatedBy, mCreatedOn, mUpdatedBy, mUpdatedOn, mDetails, mType, mDate;
     RecyclerView mRecyclerView;
     ArrayList<Complaints> mComplaintArrayList;

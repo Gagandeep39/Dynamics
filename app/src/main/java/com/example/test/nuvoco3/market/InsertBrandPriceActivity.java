@@ -95,6 +95,9 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
     ArrayList<DynamicPrice> mDynamicList;
 
     //Product Helper
+    int count = 0;
+    // Populates Spinner with Data and allows Selection of Items
+    String tempProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +112,7 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validateDate();
+                finish();
             }
         });
 
@@ -131,14 +134,11 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         mBrandPricePriceList = new ArrayList<>();
 
         mDynamicList = new ArrayList<>();
-
         mBrandHelper = new MasterHelper(this, "Brand");
-
         mBrandArrayList = mBrandHelper.getRecordName();
 
         mTextViewDate.setText(getDate());
-        mDate = getDate();
-
+        mDate = getDateTime();
 
 
     }
@@ -187,7 +187,6 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
 
         Map<String, String> postParam = new HashMap<>();
 
-//
         postParam.put("2", mRepresentative);
         postParam.put("3", mCounter);
         postParam.put("4", mDate);
@@ -216,7 +215,6 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
                                 Toast.makeText(InsertBrandPriceActivity.this, "Successfully Inserted Data", Toast.LENGTH_SHORT).show();
                                 mBrandPricePriceList.add(new BrandPrice("1", mRepresentative, mCounter, mDate, mBrand, mProduct, mWSP, mRSP, mStock, mRemarks, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
                                 mDetailsAdapter.notifyDataSetChanged();
-
 
 
                             } else {
@@ -274,10 +272,6 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         handler.postDelayed(runnable, PROGRESS_DIALOG_DURATION);
     }
 
-
-   int count =0;
-    // Populates Spinner with Data and allows Selection of Items
-    String tempProduct;
     private void populateSpinners() {
 
         ArrayAdapter<String> mProductAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mProductArrayList);
@@ -374,18 +368,22 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())){
+                        String dateText = "";
+                        if (compareSmallDate(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth, getDate())) {
 
                             Toast.makeText(InsertBrandPriceActivity.this, "Date cannot Exceed Current Date", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
+                            if (monthOfYear + 1 >= 10)
+                                dateText = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            else
+                                dateText = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
 
-                            mTextViewDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            mTextViewDate.setText(dateText);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date date = new Date();
+                            mTextViewDate.setText(dateText);
 
-                            mDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
-                            Log.i(TAG, "onDateSet: " + mDate);
+                            mDate = dateText + " " + dateFormat.format(date);
 
                         }
                     }
@@ -476,7 +474,7 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
             finish();
             return true;
         } else if (item.getItemId() == R.id.checkable_menu) {
-            if (progressDialog.isShowing()){
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             isChecked = !item.isChecked();
@@ -489,9 +487,9 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
     }
 
 
-    void addNewDataSet(){
+    void addNewDataSet() {
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        cardParams.setMargins(8,8,8,8);
+        cardParams.setMargins(8, 8, 8, 8);
         CardView cardView = new CardView(this);
         cardView.setCardElevation(8);
         cardView.setRadius(8);
@@ -502,12 +500,12 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         rootLayout.setPadding(pad, pad, pad, pad);
         cardView.addView(rootLayout);
         TextView textView = new TextView(this);
-        textView.setPadding(pad,pad,pad,pad);
+        textView.setPadding(pad, pad, pad, pad);
         textView.setTextSize(12);
         textView.setText(mBrand);
         rootLayout.addView(textView);
 
-        for (int i=0; i<mProductArrayList.size(); i++){
+        for (int i = 0; i < mProductArrayList.size(); i++) {
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -531,9 +529,9 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
             mTextLayoutWSP.addView(mDynamicEditTextWSP);
             mTextLayoutStock.addView(mDynamicEditTextStock);
 
-            mDynamicEditTextRSP.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
-            mDynamicEditTextWSP.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
-            mDynamicEditTextStock.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            mDynamicEditTextRSP.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            mDynamicEditTextWSP.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            mDynamicEditTextStock.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
             mTextLayoutRSP.setHint("RSP");
             mTextLayoutWSP.setHint("WSP");
@@ -554,26 +552,27 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         }
         final Button button = new Button(this);
         button.setText("Save Entries");
+        button.setBackgroundResource(R.drawable.my_button_bg);
+        button.setTextColor(getResources().getColor(R.color.colorAccent));
         button.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int count = 0;
-                for(int i=0; i < mDynamicList.size(); i++){
-                    if (!TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString())&&!TextUtils.isEmpty(mDynamicList.get(i).getEditTextWSP().getText().toString())||(TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString())&&TextUtils.isEmpty(mDynamicList.get(i).getEditTextWSP().getText().toString()))){
+                for (int i = 0; i < mDynamicList.size(); i++) {
+                    if (!TextUtils.isEmpty(mDynamicList.get(i).getEditTextStock().getText().toString()) && !TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString()) && !TextUtils.isEmpty(mDynamicList.get(i).getEditTextWSP().getText().toString()) || (TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString()) && TextUtils.isEmpty(mDynamicList.get(i).getEditTextWSP().getText().toString()))) {
                         count++;
-                    }else{
-                        count =-1;
+                    } else {
+                        count = -1;
                         break;
                     }
                 }
-                if (count==-1){
+                if (count == -1) {
                     count = 0;
                     Toast.makeText(InsertBrandPriceActivity.this, "Fill all details of a particular product", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    for (int i=0; i<mDynamicList.size(); i++){
-                        if (!TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString())){
+                } else {
+                    for (int i = 0; i < mDynamicList.size(); i++) {
+                        if (!TextUtils.isEmpty(mDynamicList.get(i).getEditTextRSP().getText().toString())) {
                             mProduct = mDynamicList.get(i).getTextView().getText().toString();
                             mWSP = mDynamicList.get(i).getEditTextWSP().getText().toString();
                             mRSP = mDynamicList.get(i).getEditTextRSP().getText().toString();
@@ -588,23 +587,23 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
 
                             if (TextUtils.isEmpty(mRemarks))
                                 mEditTextRemarks.setError("Enter Remarks");
-                            else{
+                            else {
 
                                 mDynamicList.get(i).getEditTextWSP().setKeyListener(null);
                                 mDynamicList.get(i).getEditTextRSP().setKeyListener(null);
                                 mDynamicList.get(i).getEditTextStock().setKeyListener(null);
                                 sendDataToServer();
+//                                validateDate();
 
                             }
                         }
                     }
                     if (!TextUtils.isEmpty(mRemarks))
-                    button.setVisibility(View.GONE);
+                        button.setVisibility(View.GONE);
 //                    addNewDataSet();
                 }
             }
         });
-
 
 
         rootLayout.addView(button);
@@ -623,7 +622,7 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("lol", "onResponse:  " + response);
-                if (progressDialog.isShowing()){
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
                 try {
@@ -668,13 +667,8 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         queue.add(jsonObjReq);
 
 //            progressDialog.dismiss();
-        Log.d(TAG, "getRecordName: i" +"deftg;");
+        Log.d(TAG, "getRecordName: i" + "deftg;");
     }
-
-
-
-
-
 
 
 }
