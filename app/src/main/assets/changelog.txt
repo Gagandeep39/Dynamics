@@ -1,5 +1,8 @@
+----Version 0.93-----
+-Moved RecordManagement Activity and Changelog Activity to Helpers section
+-Implemented Deletion Feature(Unstable - Might be removed in the future)
 ----Version 0.92-----
-Added condition that will prevent Visit of one person to be viewed by someone else
+-Added condition that will prevent Visit of one person to be viewed by someone else
 ----Version 0.91-----
 -(Server side)Fixed Insertion of Complaints(now successfully sends email on inserting complaints)
 ----Version 0.90-----

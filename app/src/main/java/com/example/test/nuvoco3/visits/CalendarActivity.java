@@ -189,13 +189,6 @@ public class CalendarActivity extends AppCompatActivity {
             finish();
             return true;
         }
-//        else if (item.getItemId() == R.id.checkable_menu) {
-//            isChecked = !item.isChecked();
-//            item.setChecked(isChecked);
-//            mCustomerList.clear();
-//            populateCustomers();
-//            return true;
-//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -266,24 +259,26 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void fetchData(JSONObject object) {
         try {
+            if (!object.getString("Visit_status").contains("Delete Visit")) {
+                mRecordId = object.getString("record_id") + "";
+                mJcpId = object.getString("JCP_id");
+                mDate = object.getString("Date") + "";
+                mCustomerId = object.getString("ccustomer_id") + "";
+                mCustomerName = object.getString("customer_name") + "";
+                mObjective = object.getString("Objective") + "";
+                mVisitRemark = object.getString("Visit_remark") + "";
+                mVisitStatus = object.getString("Visit_status") + "";
+                mCreatedBy = object.getString("createdBy") + "";
+                mCreatedOn = object.getString("createdOn") + "";
+                mOrder = object.getString("new_order") + "";
+                mProductQuantity = object.getString("order_quantity") + "";
+                mProduct = object.getString("product") + "";
+                mUpdatedBy = object.getString("updatedby") + "";
+                mUpdatedOn = object.getString("updatedOn") + "";
+                mJcpArrayList.add(new JCPDetails(mRecordId, mJcpId, mDate, mCustomerId, mCustomerName, mObjective, mOrder, mProduct, mProductQuantity, mVisitRemark, mVisitStatus, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
+                mJcpAdapter.notifyDataSetChanged();
+            }
 
-            mRecordId = object.getString("record_id") + "";
-            mJcpId = object.getString("JCP_id");
-            mDate = object.getString("Date") + "";
-            mCustomerId = object.getString("ccustomer_id") + "";
-            mCustomerName = object.getString("customer_name") + "";
-            mObjective = object.getString("Objective") + "";
-            mVisitRemark = object.getString("Visit_remark") + "";
-            mVisitStatus = object.getString("Visit_status") + "";
-            mCreatedBy = object.getString("createdBy") + "";
-            mCreatedOn = object.getString("createdOn") + "";
-            mOrder = object.getString("new_order") + "";
-            mProductQuantity = object.getString("order_quantity") + "";
-            mProduct = object.getString("product") + "";
-            mUpdatedBy = object.getString("updatedby") + "";
-            mUpdatedOn = object.getString("updatedOn") + "";
-            mJcpArrayList.add(new JCPDetails(mRecordId, mJcpId, mDate, mCustomerId, mCustomerName, mObjective, mOrder, mProduct, mProductQuantity, mVisitRemark, mVisitStatus, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
-            mJcpAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }

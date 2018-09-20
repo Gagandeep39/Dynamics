@@ -85,7 +85,8 @@ public class ViewJCPActivity extends AppCompatActivity {
         mJCPArrayList = new ArrayList<>();
 
         readData();
-        mJcpAdapter = new JCPAdapter(this, mJCPArrayList);
+        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
+        mJcpAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mJcpAdapter);
 
 
@@ -93,8 +94,6 @@ public class ViewJCPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSearchDate = mEditTextDate.getText().toString();
-//                mJCPArrayList.clear();
-//                mJcpAdapter.notifyDataSetChanged();
 
                 mJCPArrayList.clear();
                 readData();
@@ -157,12 +156,9 @@ public class ViewJCPActivity extends AppCompatActivity {
                         if (object.getString("createdBy").equals(new UserInfoHelper(ViewJCPActivity.this).getUserId())) {
                             fetchData(object);
                         }
-//                        }
-
                     }
 
                 } catch (JSONException e1) {
-                    e1.printStackTrace();
                     e1.printStackTrace();
                 }
             }
@@ -194,9 +190,6 @@ public class ViewJCPActivity extends AppCompatActivity {
 
     private void fetchData(JSONObject object) {
         try {
-
-            Log.e(TAG, "fetchData: " + convertJsonDateToSmall(object.getString("Date")));
-            Log.e(TAG, "fetchData: " + mSearchDate);
             if (convertJsonDateToSmall(object.getString("Date")).equals(mSearchDate)) {
                 Log.e(TAG, "fetchData: HERE");
                 mCustomerId = object.getString("Customer_id") + "";
@@ -212,9 +205,8 @@ public class ViewJCPActivity extends AppCompatActivity {
                 mUpdatedBy = object.getString("updatedBy") + "";
                 mUpdatedOn = object.getString("updatedOn") + "";
                 mJCPArrayList.add(new JCP(mRecordId, mCustomerId, mCustomerName, mDate, mStartTime, mEndTime, mObjective, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy));
-                mJcpAdapter.notifyDataSetChanged();
-                Toast.makeText(ViewJCPActivity.this, "Value " + mJCPArrayList.get(0).getCreatedOn(), Toast.LENGTH_SHORT).show();
             }
+            readDataFromDetailsServer();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -334,14 +326,29 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                         try {
 
-                            mDetailsJcpId = object.getString("JCP_id");
-                            mDetailsArray.add(mDetailsJcpId);
+                            if (object.getString("Visit_status").contains("Delete Visit")) {
+                                Log.e(TAG, "onResponse: I was Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + object.getString("customer_name"));
+                                for (int j = 0; j < mJCPArrayList.size(); j++) {
+                                    Log.e(TAG, "onResponse: " + mJCPArrayList.get(j).getCustomerName());
+                                    if (mJCPArrayList.get(j).getCustomerName().contains(object.getString("customer_name"))) {
+                                        mJCPArrayList.remove(j);
+                                        Log.e(TAG, "onResponse: REMOVED");
+                                    }
+
+                                }
+                            }
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
+                        mJcpAdapter.notifyDataSetChanged();
+                        mRecyclerView.setAdapter(mJcpAdapter);
                     }
+
+
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -353,7 +360,6 @@ public class ViewJCPActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(ViewJCPActivity.this, "" + error, Toast.LENGTH_SHORT).show();
                 VolleyLog.d("lol", "Error with Internet : " + error.getMessage());
-                // hide the progress dialog
             }
         }) {
             @Override
