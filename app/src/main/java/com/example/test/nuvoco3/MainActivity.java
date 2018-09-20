@@ -125,8 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.iconSetting:
-                break;
             case R.id.iconUsers:
                 startActivity(new Intent(this, UserAccountActivity.class));
                 break;

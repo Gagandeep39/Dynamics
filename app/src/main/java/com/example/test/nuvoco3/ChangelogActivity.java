@@ -3,12 +3,18 @@ package com.example.test.nuvoco3;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class ChangelogActivity extends AppCompatActivity {
-    TextView mChangeLog;
+
+    TextView mChangeLogTextView;
     String mChangelogString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,29 +22,29 @@ public class ChangelogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_changelog);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mChangeLog = findViewById(R.id.textView);
-        mChangelogString = "Version 0.82\n\n";
-        mChangelogString += "Added a Changelog Tab in Navigation Drawer...its better than writing all changes in Github Before which i Actually forget whats happening\n";
-        mChangelogString += "Date in General Market Info is Current Date and Cannot be Changed\n";
-        mChangelogString += "Complaint is now displayed Department wise\n";
-        mChangelogString += "Create JCP can no longer have date before current date\n";
-        mChangelogString += "Version 0.85\nFixed IP Address\nRenamed JCP calender to 'Visit Overview\nRenamed JCP Viit to'Visit Overview'\nCalender View now Shows data for current data on opening activity\nVisit Overview now shows toda's visit on opening activity";
-        mChangelogString += "Version 0.86\nRemoved specific domain requirement";
-        mChangelogString += "Version 0.87\nFixed the 'co.in' requiremnet";
-        mChangelogString += "Version 0.88\nFixed Create JCP for future dates\nFixed JCP Visit list not visible, but still hides on changing date\nFixed Data insertion in create JCP(Server side)";
-        mChangeLog.setText(mChangelogString);
+
+        mChangeLogTextView = findViewById(R.id.textView);
+        mChangelogString = readChangelogFile();
+        mChangeLogTextView.setText(mChangelogString);
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case android.R.id.home:
-                finish();
-                return true;
+    private String readChangelogFile() {
+        String mTextFile = "";
+        InputStream mInputStream = null;
+        try {
+            mInputStream = this.getAssets().open("changelog.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(mInputStream));
+            String strLine;
+            while ((strLine = reader.readLine()) != null) {
+                mTextFile = mTextFile + strLine + "\n";
+            }
+            reader.close();
+            mInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return super.onOptionsItemSelected(item);
+        return mTextFile;
     }
 }

@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ChangelogActivity"
-    android:padding="@dimen/padding_standard"
     tools:showIn="@layout/activity_changelog">
     <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="8sp">
 
         <TextView
+            android:text="Testing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"/>

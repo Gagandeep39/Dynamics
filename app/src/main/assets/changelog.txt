@@ -1,0 +1,28 @@
+----Version 0.89-----
+-Added a text file to track changelog
+-Added a back button in changelog Activity to go to home screen
+-Removed settings icon from navigation bar
+-----Version 0.88-----
+-Fixed Create JCP for future dates
+-Fixed JCP Visit list not visible, but still hides on changing date
+-Fixed Data insertion in create JCP(Server side)
+-----Version 0.87-----
+-Fixed the 'co.in' requiremnet
+-----Version 0.86-----
+-Removed specific domain requirement
+-----Version 0.85-----
+-Fixed IP Address
+-Renamed JCP calender to 'Visit Overview'
+-Renamed JCP Viit to'Visit Overview'
+-Calender View now Shows data for current data on opening activity
+-Visit Overview now shows toda's visit on opening activity
+-----Version 0.82-----
+-Added a Changelog Tab in Navigation Drawer...its better than writing all changes in Github Before which i Actually forget whats happening
+-Date in General Market Info is Current Date and Cannot be Changed
+-Complaint is now displayed Department wise
+-Create JCP can no longer have date before current date
+
+
+
+
+
