@@ -1,4 +1,4 @@
-package com.example.test.nuvoco3;
+package com.example.test.nuvoco3.helpers;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.test.nuvoco3.helpers.UserInfoHelper;
+import com.example.test.nuvoco3.R;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONException;

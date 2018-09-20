@@ -85,6 +85,9 @@ public class ViewJCPActivity extends AppCompatActivity {
         mJCPArrayList = new ArrayList<>();
 
         readData();
+        readDataFromDetailsServer();
+
+
         mJcpAdapter = new JCPAdapter(this, mJCPArrayList);
         mRecyclerView.setAdapter(mJcpAdapter);
 
@@ -93,8 +96,6 @@ public class ViewJCPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSearchDate = mEditTextDate.getText().toString();
-//                mJCPArrayList.clear();
-//                mJcpAdapter.notifyDataSetChanged();
 
                 mJCPArrayList.clear();
                 readData();
@@ -334,8 +335,13 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                         try {
 
-                            mDetailsJcpId = object.getString("JCP_id");
-                            mDetailsArray.add(mDetailsJcpId);
+                            if (object.getString("Visit_status").contains("Delete Visit")) {
+                                for (int j = 0; j < mJCPArrayList.size(); j++) {
+                                    if (mJCPArrayList.get(j).getCustomerId().contains(object.getString("ccustomer_id")))
+                                        mJCPArrayList.remove(j);
+
+                                }
+                            }
 
 
                         } catch (JSONException e) {
@@ -353,7 +359,6 @@ public class ViewJCPActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(ViewJCPActivity.this, "" + error, Toast.LENGTH_SHORT).show();
                 VolleyLog.d("lol", "Error with Internet : " + error.getMessage());
-                // hide the progress dialog
             }
         }) {
             @Override

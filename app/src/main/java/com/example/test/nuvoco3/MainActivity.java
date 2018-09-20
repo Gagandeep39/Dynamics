@@ -26,6 +26,8 @@ import com.example.test.nuvoco3.fragments.FragmentCustomer;
 import com.example.test.nuvoco3.fragments.FragmentLead;
 import com.example.test.nuvoco3.fragments.FragmentMarket;
 import com.example.test.nuvoco3.fragments.FragmentVisit;
+import com.example.test.nuvoco3.helpers.ChangelogActivity;
+import com.example.test.nuvoco3.helpers.RecordManagementActivity;
 import com.example.test.nuvoco3.helpers.UserInfoHelper;
 import com.example.test.nuvoco3.signup.LoginActivity;
 import com.example.test.nuvoco3.signup.ObjectSerializer;

@@ -1,9 +1,11 @@
-package com.example.test.nuvoco3;
+package com.example.test.nuvoco3.helpers;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+
+import com.example.test.nuvoco3.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
