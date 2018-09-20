@@ -127,7 +127,7 @@ public class InsertComplaintActivity extends AppCompatActivity {
             Toast.makeText(this, "Select Complaint Type", Toast.LENGTH_SHORT).show();
 
         if (!TextUtils.isEmpty(mDate) && !TextUtils.isEmpty(mComplaintDetails) && !TextUtils.isEmpty(mCustomerId) && !TextUtils.equals(mCustomerName, getString(R.string.default_name)) && !TextUtils.equals(mComplaintType, getString(R.string.default_name)) && !TextUtils.equals(mStatus, getString(R.string.default_name))) {
-            Toast.makeText(this, "Data sent", Toast.LENGTH_SHORT).show();
+
             storeDataToServer();
         }
     }
@@ -148,20 +148,21 @@ public class InsertComplaintActivity extends AppCompatActivity {
         postParam.put("10", mUpdatedBy);
         postParam.put("11", mStatus);
 
+
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, BASE_URL + INSERT_COMPLAINT, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i(TAG, response.toString());
+                        Log.e(TAG, response.toString());
                         try {
                             if (response.getString("status").equals("updated")) {
                                 mComplaintId = response.getString("complaint_ID");
                                 mRepresentative = new UserInfoHelper(InsertComplaintActivity.this).getUserId();
-//                                startActivity(intent);
+                                Toast.makeText(InsertComplaintActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
                                 saveDetailsDataToServer();
                             } else {
-                                Toast.makeText(InsertComplaintActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InsertComplaintActivity.this, "Response" + response, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

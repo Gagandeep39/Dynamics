@@ -154,7 +154,9 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                         Log.i(TAG, "onResponse: " + "From the inner loop" + jsonArray.length());
                         JSONObject object = jsonArray.getJSONObject(i);
+                        if (object.getString("createdBy").equals(new UserInfoHelper(ViewJCPActivity.this).getUserId())) {
                             fetchData(object);
+                        }
 //                        }
 
                     }

@@ -1,0 +1,34 @@
+----Version 0.92-----
+Added condition that will prevent Visit of one person to be viewed by someone else
+----Version 0.91-----
+-(Server side)Fixed Insertion of Complaints(now successfully sends email on inserting complaints)
+----Version 0.90-----
+-(Server side)Fixed Add campaign Activity by making blob value "None" in the python code
+----Version 0.89-----
+-Added a text file to track changelog
+-Added a back button in changelog Activity to go to home screen
+-Removed settings icon from navigation bar
+-----Version 0.88-----
+-Fixed Create JCP for future dates
+-Fixed JCP Visit list not visible, but still hides on changing date
+-(Server side)Fixed Data insertion in create JCP
+-----Version 0.87-----
+-Fixed the 'co.in' requiremnet
+-----Version 0.86-----
+-Removed specific domain requirement
+-----Version 0.85-----
+-Fixed IP Address
+-Renamed JCP calender to 'Visit Overview'
+-Renamed JCP Visit to'Visit Overview'
+-Calender View now Shows data for current data on opening activity
+-Visit Overview now shows today's visit on opening activity
+-----Version 0.82-----
+-Added a Changelog Tab in Navigation Drawer...its better than writing all changes in Github Before which i Actually forget whats happening
+-Date in General Market Info is Current Date and Cannot be Changed
+-Complaint is now displayed Department wise
+-Create JCP can no longer have date before current date
+
+
+
+
+

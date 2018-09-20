@@ -8,10 +8,10 @@
             android:id="@+id/iconUsers"
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="Account" />
-        <item
-            android:id="@+id/iconSetting"
-            android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Settings" />
+        <!--<item-->
+        <!--android:id="@+id/iconSetting"-->
+        <!--android:icon="@drawable/ic_settings_black_24dp"-->
+        <!--android:title="Settings" />-->
         <item
             android:id="@+id/iconChangelog"
             android:icon="@drawable/ic_developer_tab"
