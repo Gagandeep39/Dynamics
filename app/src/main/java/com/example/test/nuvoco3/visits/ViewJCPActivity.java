@@ -97,9 +97,6 @@ public class ViewJCPActivity extends AppCompatActivity {
 
                 mJCPArrayList.clear();
                 readData();
-                mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
-                mJcpAdapter.notifyDataSetChanged();
-                mRecyclerView.setAdapter(mJcpAdapter);
 
             }
         });
@@ -231,19 +228,19 @@ public class ViewJCPActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
-                            mEditTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        String dateString = "";
+                        if ((monthOfYear + 1) > 9)
+                            dateString = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        else
+                            dateString = year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        mEditTextDate.setText(dateString);
                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             Date date = new Date();
-
-                            mSearchDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth + " " + dateFormat.format(date);
-
+                        Log.e(TAG, "onDateSet: " + mSearchDate);
+                        mSearchDate = dateString;
                         mJCPArrayList.clear();
-                            readData();
-                        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
-                        mRecyclerView.setAdapter(mJcpAdapter);
-//                        }
+                        readData();
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -327,7 +324,6 @@ public class ViewJCPActivity extends AppCompatActivity {
                         try {
 
                             if (object.getString("Visit_status").contains("Delete Visit")) {
-                                Log.e(TAG, "onResponse: I was Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + object.getString("customer_name"));
                                 for (int j = 0; j < mJCPArrayList.size(); j++) {
                                     Log.e(TAG, "onResponse: " + mJCPArrayList.get(j).getCustomerName());
                                     if (mJCPArrayList.get(j).getCustomerName().contains(object.getString("customer_name"))) {
@@ -344,8 +340,11 @@ public class ViewJCPActivity extends AppCompatActivity {
                         }
 
 
+                        mJcpAdapter = new JCPAdapter(ViewJCPActivity.this, mJCPArrayList);
                         mJcpAdapter.notifyDataSetChanged();
                         mRecyclerView.setAdapter(mJcpAdapter);
+//                        mJcpAdapter.notifyDataSetChanged();
+//                        mRecyclerView.setAdapter(mJcpAdapter);
                     }
 
 

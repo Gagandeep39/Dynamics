@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -60,6 +61,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
     TextInputLayout mQuantityLayout;
     SearchableSpinner mStatusSpinner, mProductSpinner;
     CheckBox mCheckBoxOrder;
+    TextView mTextViewVisitStatus;
 
     String mJcpId, mRecordId, mProduct, mDate, mCustomerId, mCustomerName, mObjective, mStartTime, mEndTime, mOrderStatus, mOrderQuantity, mVisitRemark, mVisitStatus, mCreatedOn, mCreatedBy, mUpdatedOn, mUpdatedBy;
     MasterHelper mStatusHelper, mProductHelper;
@@ -67,7 +69,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
     ArrayAdapter mStatusAdapter, mProductAdapter;
 
     RequestQueue queue;
-    LinearLayout mLinearLayout;
+    LinearLayout mLinearLayout, mStatusLayout;
     ProgressDialog progressDialog;
     CoordinatorLayout mCoordinatorLayout;
 
@@ -128,6 +130,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
             mEndTime = getIntent().getStringExtra("EndTime");
 
 
+
             mEditTextJcpId.setText(mJcpId);
             mEditTextDate.setText(convertJsonDateToSmall(mDate));
             mEditTextCustomerId.setText(mCustomerId);
@@ -162,6 +165,8 @@ public class VisitDetailsActivity extends AppCompatActivity {
         mLinearLayout = findViewById(R.id.linearLayout);
         mProductSpinner = findViewById(R.id.searchProduct);
         mCoordinatorLayout = findViewById(R.id.coordinator);
+        mTextViewVisitStatus = findViewById(R.id.textViewVisitStatus);
+        mStatusLayout = findViewById(R.id.statusLayout);
     }
 
 
@@ -380,6 +385,7 @@ public class VisitDetailsActivity extends AppCompatActivity {
 
                     }
 
+
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                     e1.printStackTrace();
@@ -415,6 +421,16 @@ public class VisitDetailsActivity extends AppCompatActivity {
         try {
             if (object.getString("JCP_id").toLowerCase().equals(getIntent().getStringExtra("JcpId"))) {
                mRecordId = object.getString("record_id");
+                mVisitStatus = object.getString("Visit_status");
+                mTextViewVisitStatus.setText("" + mVisitStatus);
+                Toast.makeText(this, "" + mVisitStatus, Toast.LENGTH_SHORT).show();
+                if (mVisitStatus.contains("Completed")) {
+                    fab.hide();
+                    mStatusLayout.setVisibility(View.GONE);
+                    mTextViewVisitStatus.append(" - Cannot be Changed");
+                    mCheckBoxOrder.setVisibility(View.GONE);
+                    mEditTextRemark.setVisibility(View.GONE);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

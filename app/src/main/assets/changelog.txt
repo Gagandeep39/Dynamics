@@ -1,3 +1,9 @@
+----Version 0.94-----
+-Fixed Recycler view in Today's Visit
+-Today's visit now uses both the Visit table to make sure only non deleted Visits are displayed
+-Completed Status Visits cannot be edited from today's visit anymore
+-Added new textview to show current status and update status
+-Fixed deleted Visits so that they wont appear on Today's visit
 ----Version 0.93-----
 -Moved RecordManagement Activity and Changelog Activity to Helpers section
 -Implemented Deletion Feature(Unstable - Might be removed in the future)
