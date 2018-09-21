@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     ConstraintLayout mConstraintLayout;
     CheckBox mCheckBoxLogin;
+    ImageView mImageView;
 
     //User Helper
 
@@ -118,6 +121,17 @@ public class LoginActivity extends AppCompatActivity {
         mTextInputEditTextPassword = findViewById(R.id.textInputEditPassword);
         mCheckBoxLogin = findViewById(R.id.checkbox);
         mConstraintLayout = findViewById(R.id.constraintLayout);
+        mImageView = findViewById(R.id.imageView);
+
+
+        if (Build.VERSION.SDK_INT >= 25) {
+            mImageView.setBackgroundResource(R.drawable.ic_dynamics);
+        } else {
+            mImageView.setBackgroundResource(R.drawable.ic_dynamics_backcompatible);
+        }
+
+
+
     }
 
     //    If user doesn't have an account then he can Sign Up

@@ -68,7 +68,8 @@
     <string name="stock">Stock: </string>
     <string name="register">Register</string>
     <string name="login">Login</string>
-    <string name="company_info">© 2017-18, Nuvoco Vistas Corp Ltd. All Rights reserved.</string>
+    <string name="company_info">© 2018, Sales Dynamics</string>
+    <string name="college_project">Made as a College Project</string>
     <string name="technical_verify">Technical</string>
     <string name="dealer">Dealer</string>
     <string name="sub_dealer">Sub Dealer</string>

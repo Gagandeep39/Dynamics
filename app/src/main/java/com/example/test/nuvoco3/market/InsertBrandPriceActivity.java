@@ -3,6 +3,7 @@ package com.example.test.nuvoco3.market;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
@@ -552,7 +553,8 @@ public class InsertBrandPriceActivity extends AppCompatActivity {
         }
         final Button button = new Button(this);
         button.setText("Save Entries");
-        button.setBackgroundResource(R.drawable.my_button_bg);
+        if (Build.VERSION.SDK_INT >= 21)
+            button.setBackgroundResource(R.drawable.my_button_bg);
         button.setTextColor(getResources().getColor(R.color.colorAccent));
         button.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         button.setOnClickListener(new View.OnClickListener() {

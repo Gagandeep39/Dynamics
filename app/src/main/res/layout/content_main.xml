@@ -33,7 +33,6 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
-            app:tabBackground="@xml/tab_selector_color"
             app:tabIndicatorColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

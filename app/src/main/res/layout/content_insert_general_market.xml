@@ -18,11 +18,7 @@
             android:id="@+id/textInputLayoutRepresentative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCategory"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutCategory"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategory">
+            android:backgroundTint="@color/colorPrimary">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputEditRepresentative"
@@ -93,7 +89,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:onClick="datePickerFunction"
-                android:src="@drawable/ic_today_grey"
+                app:srcCompat="@drawable/ic_today_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -141,11 +137,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutPrice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCategory"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutCategory"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategory">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/textInputEditPrice"
@@ -162,11 +154,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCategory"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutCategory"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategory">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/editTextDetails"
@@ -184,11 +172,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutDemand"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutCategory"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutCategory"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCategory">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/editTextDemand"

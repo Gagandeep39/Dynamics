@@ -1,5 +1,6 @@
 package com.example.test.nuvoco3;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
+    android.support.design.widget.TabLayout tabLayout;
 
 
     public static final String TAG = "MAIN ACTIVITY";
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String versionName = BuildConfig.VERSION_NAME;
     TextView mTextViewBuildInfo;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,17 +74,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mTextViewBuildInfo.append("\nVersion " + versionName);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        String htmlString = "<p><span style=\"color: #263238;\"><Strong>Sales<Strong></span> <strong><span style=\"color: #18945A;\">DYNAMICS</span></strong></p>";
-        String htmlString2 = "<p><span style=\"color: #263238;\"><Strong>SALES<Strong></span> <strong><span style=\"color: #18945A;\">Dynamics</span></strong></p>";
+        tabLayout = findViewById(R.id.tabs);
+
+        if (Build.VERSION.SDK_INT >= 21)
+            tabLayout.setBackground(ContextCompat.getDrawable(this, R.xml.tab_selector_color));
+
+
+        String htmlString = "<p><font color= #263238><Strong>Sales<Strong></font> <strong><font color= #18945A>DYNAMICS</font></strong></p>";
+        String htmlString2 = "<p><font color= #263238><Strong>SALES<Strong></span> <strong><font color= #18945A;\">Dynamics</span></strong></p>";
         setSupportActionBar(toolbar);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+        if (Build.VERSION.SDK_INT >= 24)
             getSupportActionBar().setTitle(Html.fromHtml(htmlString, Html.FROM_HTML_MODE_COMPACT));
         else
             getSupportActionBar().setTitle(Html.fromHtml(htmlString));
-
-//        getSupportActionBar().setTitle(Html.fromHtml("<font color='#14804d'><b>Dynamics</b></font>"));
-
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));

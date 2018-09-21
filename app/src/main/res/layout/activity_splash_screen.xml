@@ -10,7 +10,6 @@
         android:layout_width="180sp"
         android:layout_height="180sp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_dynamics"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +17,14 @@
 
     <TextView
         android:id="@+id/textViewVersion"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:text="NUVOCO"
-        app:layout_constraintBottom_toTopOf="@+id/textViewInfo" />
+        android:text="Sales Dynamics"
+        app:layout_constraintBottom_toTopOf="@+id/textViewInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewInfo"
@@ -32,7 +33,6 @@
         android:layout_below="@+id/textViewVersion"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="@string/company_info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

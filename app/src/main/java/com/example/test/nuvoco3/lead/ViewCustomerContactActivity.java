@@ -41,7 +41,7 @@ import static com.example.test.nuvoco3.helpers.Contract.PROGRESS_DIALOG_DURATION
 
 public class ViewCustomerContactActivity extends AppCompatActivity {
     private static final String TAG = "ViewCustomerContact";
-    public static ArrayList<CustomerContact> mCustomerContactArrayList;
+    public static ArrayList<CustomerContact> mCustomerContactArrayList, mSearchList;
     CustomerContactAdapter mAdapter;
     RequestQueue queue;
     SearchView mSearchView;
@@ -65,21 +65,47 @@ public class ViewCustomerContactActivity extends AppCompatActivity {
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mCustomerContactArrayList.clear();
+                mSearchList.clear();
+                Log.e(TAG, "onQueryTextSubmit: BUTTON PRESSED" + query);
                 mSearchText = query;
+                for (int i = 0; i < mCustomerContactArrayList.size(); i++) {
+                    if (mCustomerContactArrayList.get(i).getCustomerName().toLowerCase().contains(mSearchText.toLowerCase()) || mCustomerContactArrayList.get(i).getCustomerId().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactPhone().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactEmail().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactName().contains(mSearchText)) {
+                        mSearchList.add(mCustomerContactArrayList.get(i));
 
-                readData();
+
+                    }
+                }
+//                readData();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+
+                if (query.equals("")) {
+                    mAdapter = new CustomerContactAdapter(ViewCustomerContactActivity.this, mCustomerContactArrayList);
+                } else {
+                    mAdapter = new CustomerContactAdapter(ViewCustomerContactActivity.this, mSearchList);
+                }
+
                 mAdapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(mAdapter);
                 return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String query) {
 
-                return false;
+                mSearchList.clear();
+                mSearchText = query;
+                for (int i = 0; i < mCustomerContactArrayList.size(); i++) {
+                    if (mCustomerContactArrayList.get(i).getCustomerName().toLowerCase().contains(mSearchText.toLowerCase()) || mCustomerContactArrayList.get(i).getCustomerId().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactPhone().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactEmail().contains(mSearchText) || mCustomerContactArrayList.get(i).getCustomerContactName().contains(mSearchText)) {
+                        mSearchList.add(mCustomerContactArrayList.get(i));
+
+
+                    }
+                }
+                mAdapter = new CustomerContactAdapter(ViewCustomerContactActivity.this, mSearchList);
+                mAdapter.notifyDataSetChanged();
+                mRecyclerView.setAdapter(mAdapter);
+                return true;
             }
         });
     }
@@ -206,6 +232,8 @@ public class ViewCustomerContactActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         mCoordinaterLayout = findViewById(R.id.coordinator);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        mSearchList = new ArrayList<>();
+        mCustomerContactArrayList = new ArrayList<>();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

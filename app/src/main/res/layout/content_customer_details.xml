@@ -40,7 +40,7 @@
                     <ImageView
                         android:layout_width="24sp"
                         android:layout_height="24sp"
-                        android:src="@drawable/ic_name" />
+                        app:srcCompat="@drawable/ic_name" />
 
                     <TextView
                         android:id="@+id/textViewName"
@@ -59,7 +59,7 @@
                     <ImageView
                         android:layout_width="24sp"
                         android:layout_height="24sp"
-                        android:src="@drawable/ic_phone" />
+                        app:srcCompat="@drawable/ic_phone" />
 
                     <TextView
                         android:id="@+id/textViewPhone"
@@ -78,7 +78,7 @@
                     <ImageView
                         android:layout_width="24sp"
                         android:layout_height="24sp"
-                        android:src="@drawable/ic_email" />
+                        app:srcCompat="@drawable/ic_email" />
 
                     <TextView
                         android:id="@+id/textViewEmail"

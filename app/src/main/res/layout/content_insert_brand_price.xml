@@ -140,7 +140,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:onClick="datePickerFunction"
-                android:src="@drawable/ic_today_grey"
+                app:srcCompat="@drawable/ic_today_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

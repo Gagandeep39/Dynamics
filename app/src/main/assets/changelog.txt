@@ -1,10 +1,28 @@
+----Version 1.11-----
+-Changed text in splash screen
+-Fixed a ripple related crash in insert brand, price activity
+-Customer contacts now show images
+-Added offline search in customer contact
+-Added icons in View Contacts
+-Changed Strings arrangement in View Contacts
+-Added proper support for Kitkat and further devices
+-Icons in all activities now use srcCompat
+-TabLayout in home screen now use support.gridlayout
+----Version 1.10-----
+-Nougat(25)+ now show splash screen and login screen image with shadow and older ones show without shadow
+-Login and Splash screen icons now load at runtime
+----Version 1.9-----
+-fixed title not showing in some devices(might be because of the way they execute HTML code)(simply removed 'span' word)
+-Added new vector image for splash screen and login screen to work wth API 24 and below
 ----Version 1.8-----
 -Implement on search text change listener in view customer
 -View Customer and View my customer now fetches data only once and creates a search array list using the initial one
 -Completely fixed Today's JCP activity
+-Fixed unnecessary Keyboard poput in View JCP Activity
 -Insert complaint now takes today's date by default
 -Added a condition to append '0' infront of time less than 10:00 in add campaign and raise complaint activity
 -Added 24hr clock in Add JCP Visit
+-Fixed unnecessary Keyboard poput in View JCP Activity
 ----Version 1.7-----
 -Used compat statement for Login activity logo also
 ----Version 1.6-----

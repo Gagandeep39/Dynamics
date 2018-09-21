@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.test.nuvoco3.R;
@@ -39,6 +40,9 @@ public class CustomerContactAdapter extends RecyclerView.Adapter<CustomerContact
     public void onBindViewHolder(ViewHolder holder, final int position) {
         CustomerContact mCurrentContact = mCustomerContactList.get(position);
         holder.setIsRecyclable(false);
+
+
+        holder.mImageViewIcon.setBackgroundResource(chooseImage(mCurrentContact.getCustomerName()));
         holder.mTextViewCustomerId.append(mCurrentContact.getCustomerId());
         holder.mTextViewCustomerName.append(mCurrentContact.getCustomerName());
         holder.mTextViewName.append(mCurrentContact.getCustomerContactName());
@@ -69,10 +73,23 @@ public class CustomerContactAdapter extends RecyclerView.Adapter<CustomerContact
         return mCustomerContactList.size();
     }
 
+    private int chooseImage(String mCategory) {
+        switch (mCategory) {
+            case "Dealer":
+                return R.drawable.ic_dealer;
+            case "Sub-dealer":
+                return R.drawable.ic_sub_dealer;
+            case "Individual":
+                return R.drawable.ic_individual;
+        }
+        return R.drawable.ic_individual;
+    }
+
     //  Initialize Items in a ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextViewName, mTextViewPhone, mTextViewEmail, mTextViewCustomerId, mTextViewCustomerName, mTextViewDOB, mTextViewDOA;
         ConstraintLayout mConstraintLayout;
+        ImageView mImageViewIcon;
 
         //  Initialize Widgets in a single Item View
         public ViewHolder(View itemView) {
@@ -85,6 +102,7 @@ public class CustomerContactAdapter extends RecyclerView.Adapter<CustomerContact
             mTextViewCustomerName = itemView.findViewById(R.id.textViewCustomerName);
             mTextViewDOB = itemView.findViewById(R.id.textViewDOB);
             mTextViewDOA = itemView.findViewById(R.id.textViewDOA);
+            mImageViewIcon = itemView.findViewById(R.id.imageViewIcon);
         }
     }
 }

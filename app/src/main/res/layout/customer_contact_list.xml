@@ -19,12 +19,12 @@
         android:clickable="true"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/imageViewIcon"
             android:layout_width="80sp"
             android:layout_height="80sp"
-            android:padding="@dimen/padding_medium"
-            android:src="@color/colorAccent"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,60 +37,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
             app:layout_constraintTop_toTopOf="parent">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="0sp"
+                    android:layout_gravity="start"
+                    android:layout_weight="0.1"
+                    android:text="Contact Name"
+                    android:textSize="@dimen/text_small"
                     android:layout_height="wrap_content"
-                    android:text="Customer ID: "
-                    android:textSize="@dimen/text_medium" />
-
-                <TextView
-                    android:id="@+id/textViewCustomerId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Customer Name : "
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_medium" />
-
-                <TextView
-                    android:id="@+id/textViewCustomerName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                    android:gravity="end" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                android:textSize="@dimen/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact Name : " />
+                    app:srcCompat="@drawable/ic_name" />
 
                 <TextView
                     android:id="@+id/textViewContactName"
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
+                    android:layout_weight="0.9"
                     android:layout_height="wrap_content"
-                    android:gravity="end" />
+                    android:gravity="start" />
 
             </LinearLayout>
 
@@ -99,17 +65,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <TextView
-                android:textSize="@dimen/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone Number : " />
+                <ImageView
+                    android:layout_width="0sp"
+                    android:layout_weight="0.1"
+                    android:text="Phone Number"
+                    android:textSize="@dimen/text_small"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_phone" />
 
                 <TextView
                     android:id="@+id/textViewContactPhone"
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:gravity="end" />
+                    android:layout_weight="0.9"
+                    android:gravity="start" />
 
             </LinearLayout>
 
@@ -118,18 +87,49 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <TextView
-                android:textSize="@dimen/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email : " />
+                <ImageView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="0.1"
+                    android:text="Email"
+                    android:textSize="@dimen/text_small"
+                    app:srcCompat="@drawable/ic_email" />
 
                 <TextView
                     android:id="@+id/textViewContactEmail"
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:gravity="end" />
+                    android:layout_weight="0.9"
+                    android:gravity="start" />
 
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Customer Info" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="ID"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewCustomerId"
+                    android:layout_width="0sp"
+                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content"
+                    android:gravity="start" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,35 +138,66 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:text="Date of Birth : "
+                    android:layout_weight="0.3"
+                    android:text="Name"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewCustomerName"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="start" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth"
                     android:textSize="@dimen/text_small" />
 
                 <TextView
                     android:id="@+id/textViewDOB"
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
+                    android:layout_weight="0.7"
                     android:layout_height="wrap_content"
-                    android:gravity="end" />
+                    android:gravity="start" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0sp"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:text="Date of Anniversary : "
+                    android:text="Date of Anniversary"
                     android:textSize="@dimen/text_small" />
 
                 <TextView
                     android:id="@+id/textViewDOA"
-                    android:layout_width="match_parent"
+                    android:layout_width="0sp"
+                    android:layout_weight="0.7"
                     android:layout_height="wrap_content"
-                    android:gravity="end" />
+                    android:gravity="start" />
 
 
             </LinearLayout>

@@ -68,8 +68,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_other_factory" />
-                            <entry key="sourceFile" value="C:\Users\Gagandeep\Downloads\ecology.svg" />
+                            <entry key="outputName" value="ic_dynamics_backcompatible" />
+                            <entry key="sourceFile" value="C:\Users\Gagandeep\Downloads\ic_dynamics.xml.svg" />
                           </map>
                         </option>
                       </PersistentState>
