@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (mUserDepartment.equals(getString(R.string.technical_verify))) {
+//        if (!mUserDepartment.equals(getString(R.string.technical_verify))) {
 
-            menu.getItem(1).setVisible(false);
-        }
+//            menu.getItem(1).setVisible(false);
+//        }
         return true;
     }
 
@@ -210,9 +210,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mTextViewName.setText(newArralist.get(7));
         mTextViewEmail.setText(newArralist.get(5));
         mUserDepartment = newArralist.get(4);
-        if (mUserDepartment.equals(getString(R.string.technical_verify))) {
-            invalidateOptionsMenu();
-        }
+//        if (!mUserDepartment.equals(getString(R.string.technical_verify))) {
+//            invalidateOptionsMenu();
+//        }
 
     }
 

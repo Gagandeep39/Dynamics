@@ -159,7 +159,7 @@ public class InsertComplaintActivity extends AppCompatActivity {
                             if (response.getString("status").equals("updated")) {
                                 mComplaintId = response.getString("complaint_ID");
                                 mRepresentative = new UserInfoHelper(InsertComplaintActivity.this).getUserId();
-                                Toast.makeText(InsertComplaintActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InsertComplaintActivity.this, "Data sent" + mComplaintId, Toast.LENGTH_SHORT).show();
                                 saveDetailsDataToServer();
                             } else {
                                 Toast.makeText(InsertComplaintActivity.this, "Response" + response, Toast.LENGTH_SHORT).show();

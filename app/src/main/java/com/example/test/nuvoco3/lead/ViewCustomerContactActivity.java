@@ -87,6 +87,7 @@ public class ViewCustomerContactActivity extends AppCompatActivity {
 
                 mAdapter.notifyDataSetChanged();
                 mRecyclerView.setAdapter(mAdapter);
+                mAdapter.setHasStableIds(true);
                 return true;
             }
 
@@ -234,6 +235,9 @@ public class ViewCustomerContactActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         mSearchList = new ArrayList<>();
         mCustomerContactArrayList = new ArrayList<>();
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

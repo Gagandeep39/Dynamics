@@ -1,5 +1,6 @@
 package com.example.test.nuvoco3.lead;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -129,6 +130,7 @@ public class InsertCustomerContactActivity extends AppCompatActivity {
         mContactName = editTextContactName.getText().toString();
         mContactPhone = editTextContactPhone.getText().toString();
         mContactEmail = editTextContactEmail.getText().toString();
+        mContactDOA = "2001-01-01";
 //        mContactDOB = textViewDOB.getText().toString();
 //        mContactDOA = textViewDOA.getText().toString();
         if (TextUtils.isEmpty(mContactName)) {
@@ -197,7 +199,7 @@ public class InsertCustomerContactActivity extends AppCompatActivity {
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -236,7 +238,7 @@ public class InsertCustomerContactActivity extends AppCompatActivity {
 
         final Map<String, String> postParam = new HashMap<>();
 
-
+//        Toast.makeText(this, "" + mContactDOB, Toast.LENGTH_SHORT).show();
         postParam.put("2", mCustomerName);
         postParam.put("3", mContactName);
         postParam.put("4", mContactPhone);

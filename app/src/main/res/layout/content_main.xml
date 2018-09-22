@@ -36,6 +36,7 @@
             app:tabIndicatorColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabRippleColor="@color/colorAccent"
             app:tabSelectedTextColor="@color/colorAccent"
             app:tabTextColor="@color/colorAccent"
             app:tabMode="fixed">

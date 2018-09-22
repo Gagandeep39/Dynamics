@@ -52,9 +52,9 @@
     <string name="title_activity_view_complaint">ViewComplaintActivity</string>
     <string name="title_activity_insert">InsertActivity</string>
     <string name="title_activity_update_status">UpdateStatusActivity</string>
-    <string name="email_id">Email ID </string>
-    <string name="name">Name: </string>
-    <string name="id">ID: </string>
+    <string name="email_id">Email ID</string>
+    <string name="name">Name</string>
+    <string name="id">ID</string>
     <string name="category">Category </string>
     <string name="area">Area</string>
     <string name="view_customer">View Customer</string>

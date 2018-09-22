@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -135,7 +134,9 @@ public class RecordManagementActivity extends AppCompatActivity {
                         try {
                             if (response.getString("status").equals("updated")) {
                                 Toast.makeText(RecordManagementActivity.this, "Successfully Inserted Data", Toast.LENGTH_SHORT).show();
-                                finish();
+                                mEditTextCategory.setText("");
+                                mEditTextName.setText("");
+//                                mType = "default";
 
                             } else {
                                 Toast.makeText(RecordManagementActivity.this, "" + response, Toast.LENGTH_SHORT).show();
@@ -167,6 +168,7 @@ public class RecordManagementActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -178,6 +180,7 @@ public class RecordManagementActivity extends AppCompatActivity {
         mStatusSearch = findViewById(R.id.searchStatus);
         queue = Volley.newRequestQueue(this);
         progressDialog = new ProgressDialog(this);
+
     }
 
 
@@ -199,13 +202,13 @@ public class RecordManagementActivity extends AppCompatActivity {
             public void run() {
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(RecordManagementActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    snackbar.show();
+//                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Connection Time-out !", Snackbar.LENGTH_LONG).setAction("Retry", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Toast.makeText(RecordManagementActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                    snackbar.show();
                 }
             }
         };

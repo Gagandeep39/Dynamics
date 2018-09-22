@@ -62,7 +62,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         findViews();
+        if (Build.VERSION.SDK_INT >= 25) {
+            mImageView.setBackgroundResource(R.drawable.ic_dynamics);
+        } else {
+            mImageView.setBackgroundResource(R.drawable.ic_dynamics_backcompatible);
+        }
+
+
+
+
         progressDialog = new ProgressDialog(this);
         queue = Volley.newRequestQueue(this);
         // Checks if User has an Account or Not

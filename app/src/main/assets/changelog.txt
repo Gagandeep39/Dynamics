@@ -1,3 +1,17 @@
+----Version 1.15-----
+-DOA selection is not visible in insert contacts
+-Customer contact scrolling is smoother (fixed)
+----Version 1.14-----
+-Changed to HOLO calendar picker in add contacts
+----Version 1.13-----
+-Changed UI layout of Contact and Complaint view items
+-Fixed Login Screen Vector icon for new android versions
+-Added white navigation button for 26+ android
+-Fixed a crash related to snackbar
+-Removed condition for add product
+----Version 1.12-----
+-Updated Build tools to 28.0.0
+-Fixed ripple in tab selector(simply added tab selector color)
 ----Version 1.11-----
 -Changed text in splash screen
 -Fixed a ripple related crash in insert brand, price activity
