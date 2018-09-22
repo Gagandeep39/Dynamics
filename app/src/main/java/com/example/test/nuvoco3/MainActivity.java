@@ -12,7 +12,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tabs);
 
-        if (Build.VERSION.SDK_INT >= 21)
-            tabLayout.setBackground(ContextCompat.getDrawable(this, R.xml.tab_selector_color));
+//        if (Build.VERSION.SDK_INT >= 21)
+//            tabLayout.setBackground(ContextCompat.getDrawable(this, R.xml.tab_selector_color));
 
 
         String htmlString = "<p><font color= #263238><Strong>Sales<Strong></font> <strong><font color= #18945A>DYNAMICS</font></strong></p>";

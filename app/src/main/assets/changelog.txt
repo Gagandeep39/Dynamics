@@ -1,3 +1,6 @@
+----Version 1.12-----
+-Updated Build tools to 28.0.0
+-Fixed ripple in tab selector(simply added tab selector color)
 ----Version 1.11-----
 -Changed text in splash screen
 -Fixed a ripple related crash in insert brand, price activity

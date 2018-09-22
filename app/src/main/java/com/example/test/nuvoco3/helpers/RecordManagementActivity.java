@@ -135,7 +135,9 @@ public class RecordManagementActivity extends AppCompatActivity {
                         try {
                             if (response.getString("status").equals("updated")) {
                                 Toast.makeText(RecordManagementActivity.this, "Successfully Inserted Data", Toast.LENGTH_SHORT).show();
-                                finish();
+                                mEditTextCategory.setText("");
+                                mEditTextName.setText("");
+//                                mType = "default";
 
                             } else {
                                 Toast.makeText(RecordManagementActivity.this, "" + response, Toast.LENGTH_SHORT).show();
@@ -167,6 +169,7 @@ public class RecordManagementActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -178,6 +181,7 @@ public class RecordManagementActivity extends AppCompatActivity {
         mStatusSearch = findViewById(R.id.searchStatus);
         queue = Volley.newRequestQueue(this);
         progressDialog = new ProgressDialog(this);
+
     }
 
 
