@@ -1,3 +1,5 @@
+-renamed 'create jcp' to 'create visit'
+-temporarily remvoed condition for adding Visits for older JCP
 ----Version 1.15-----
 -DOA selection is not visible in insert contacts
 -Customer contact scrolling is smoother (fixed)
